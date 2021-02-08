@@ -1,5 +1,6 @@
 const settings = {
-    gridSize: 10
+    gridSize: 50,
+    removed: 0.4
 };
 
 let gameFinished = false;
@@ -34,9 +35,13 @@ function changeRoom(id, direction) {
     let newRoom = rooms[id].changeRoom(direction);
     if(newRoom !== null) {
         currentRoom = newRoom;
-        $('#info #error').text("");
+        if(rooms[currentRoom].endRoom === true) {
+            $('#info #general').text("Winner!!!!");
+        } else {
+            $('#info #general').text("");
+        }
     } else {
-        $('#info #error').text("you can't go that way");
+        $('#info #general').text("you can't go that way");
     }
 }
 

@@ -5,7 +5,7 @@ function setupGame() {
     }
 
     for (i = 0; i < rooms.length; i++) {
-        if(Math.random() <= 0.3) {
+        if(Math.random() <= settings.removed) {
             deleteRoom(i);
         }
     }
@@ -58,6 +58,7 @@ function generateRandomEndRoom() {
     let id = generateRandomRoom();
     if(rooms[id].availableDirections !== 4 && id !== currentRoom) {
         rooms[id].endRoom = true;
+        console.log('end room:  ', id);
     } else {
         generateRandomEndRoom();
     }
