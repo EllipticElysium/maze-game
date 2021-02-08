@@ -94,11 +94,12 @@ function mapInvalid() {
     let unvisitedNeighbors = null;
     let visitedStack = [];
     let routeFound = false;
+    let invalid = true;
 
     while(routeFound !== true) {
         rooms[activeRoom].visited = true
         if(rooms[activeRoom].endRoom === true) {
-            return false;
+            invalid = false;
         }
         unvisitedNeighbors = getUnvisitedNeighbors(activeRoom);
         if(unvisitedNeighbors.length > 0) {
@@ -108,8 +109,14 @@ function mapInvalid() {
             if(visitedStack.length > 0) {
                 activeRoom = visitedStack.pop();
             } else {
-                return true;
+                break
             }
         }
     }
+    for (i = 0; i < rooms.length; i++) {
+        if(rooms[i] && rooms[i].visited === false) {
+            rooms[i] = null;
+        }
+      } 
+    return invalid;
 }

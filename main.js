@@ -1,5 +1,5 @@
 const settings = {
-    gridSize: 50,
+    gridSize: 25,
     removed: 0.4
 };
 
