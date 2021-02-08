@@ -2,6 +2,8 @@ const settings = {
     gridSize: 10
 };
 
+let gameFinished = false;
+
 let rooms = [];
 let currentRoom = Math.floor(Math.random() * (settings.gridSize ** 2));
 
@@ -24,14 +26,42 @@ function changeRoom(id, direction) {
     }
 }
 
-function playGame() {
-    setupGame();
-
-    displayRoom(currentRoom);
-    changeRoom(currentRoom, 'down');
+function nextTurn(action) {
+    if(action.type === 'changeroom') {
+        changeRoom(currentRoom, action.direction);
+    }
     displayRoom(currentRoom);
 }
 
+function playGame() {
+    setupGame();
+    displayRoom(currentRoom);
+}
+
+$( "#up" ).click(function() {
+    nextTurn({
+        type: 'changeroom',
+        direction: 'up'
+    });
+});
+$( "#right" ).click(function() {
+    nextTurn({
+        type: 'changeroom',
+        direction: 'right'
+    });
+});
+$( "#down" ).click(function() {
+    nextTurn({
+        type: 'changeroom',
+        direction: 'down'
+    });
+});
+$( "#left" ).click(function() {
+    nextTurn({
+        type: 'changeroom',
+        direction: 'left'
+    });
+});
 
 playGame();
 
