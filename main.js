@@ -19,29 +19,60 @@ function setupGame() {
         }
     }
 
-    currentRoom = Math.floor(Math.random() * (settings.gridSize ** 2));
+    currentRoom = generateRandomRoom();
+    generateRandomEndRoom();
+
+    if(mapInvalid()) {
+        console.log('rebuilding map');
+        setupGame();
+    }
 }
 
 function deleteRoom(id) {
     let up = rooms[id].up
     if(up !== null) {
-        rooms[up].bottom = null
+        rooms[up].bottom = null;
+        rooms[up].availableDirections --;
     }    
     let right = rooms[id].right
     if(right !== null) {
-        rooms[right].left = null
+        rooms[right].left = null;
+        rooms[right].availableDirections --;
     }    
     let down = rooms[id].down
-    if(down !== null) {down
-        rooms[down].up = null
+    if(down !== null) {
+        rooms[down].up = null;
+        rooms[down].availableDirections --;
     }    
     let left = rooms[id].left
     if(left !== null) {
-        rooms[left].right = null
+        rooms[left].right = null;
+        rooms[left].availableDirections --;
     }
     rooms[id] = null;
 }
 
+function generateRandomRoom() {
+    let id = Math.floor(Math.random() * (settings.gridSize ** 2));
+    if(rooms[id] !== null) {
+        return id;
+    } else {
+        generateRandomRoom();
+    }
+}
+
+function generateRandomEndRoom() {
+    let id = generateRandomRoom();
+    if(rooms[id].availableDirections !== 4) {
+        rooms[id].endRoom = true;
+    } else {
+        generateRandomEndRoom();
+    }
+}
+
+function mapInvalid() {
+    return false;
+}
 
 function displayMap() {
     let map = [];

@@ -1,6 +1,7 @@
 class room {
 
     id = null;
+    endRoom = false;
     availableDirections = 4;
     up = '';
     right = '';
@@ -15,6 +16,7 @@ class room {
         this.right = id + 1;
         this.down = id + gridSize;
         this.left = id - 1;
+
         if(id < gridSize) {
             this.up = null;
             this.availableDirections --;
