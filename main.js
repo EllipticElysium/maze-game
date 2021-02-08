@@ -1,5 +1,5 @@
 const settings = {
-    gridSize: 4
+    gridSize: 10
 };
 
 let gameFinished = false;
@@ -14,7 +14,7 @@ function setupGame() {
     }
 
     for (i = 0; i < rooms.length; i++) {
-        if(Math.random() <= 0.2) {
+        if(Math.random() <= 0.3) {
             deleteRoom(i);
         }
     }
@@ -26,12 +26,13 @@ function setupGame() {
         console.log('rebuilding map');
         setupGame();
     }
+    console.log('startroom', currentRoom);
 }
 
 function deleteRoom(id) {
     let up = rooms[id].up
     if(up !== null) {
-        rooms[up].bottom = null;
+        rooms[up].down = null;
         rooms[up].availableDirections --;
     }    
     let right = rooms[id].right
@@ -52,18 +53,19 @@ function deleteRoom(id) {
     rooms[id] = null;
 }
 
+let randomRoomID = null;
 function generateRandomRoom() {
-    let id = Math.floor(Math.random() * (settings.gridSize ** 2));
-    if(rooms[id] !== null) {
-        return id;
+    randomRoomID = Math.floor(Math.random() * (settings.gridSize ** 2));
+    if(rooms[randomRoomID] !== null) {
+        return randomRoomID;
     } else {
-        generateRandomRoom();
+        return generateRandomRoom();
     }
 }
 
 function generateRandomEndRoom() {
     let id = generateRandomRoom();
-    if(rooms[id].availableDirections !== 4) {
+    if(rooms[id].availableDirections !== 4 && id !== currentRoom) {
         rooms[id].endRoom = true;
     } else {
         generateRandomEndRoom();
@@ -72,17 +74,25 @@ function generateRandomEndRoom() {
 
 function getUnvisitedNeighbors(id) {
     let unvisited = []
-    if(rooms[rooms[id].up].visited === false) {
-        unvisited.push(rooms[id].up);
+    if(rooms[id].up !== null){
+        if(rooms[rooms[id].up].visited === false) {
+            unvisited.push(rooms[id].up);
+        }
     }
-    if(rooms[rooms[id].right].visited === false) {
-        unvisited.push(rooms[id].right);
+    if(rooms[id].right !== null){
+        if(rooms[rooms[id].right].visited === false) {
+            unvisited.push(rooms[id].right);
+        }
     }
-    if(rooms[rooms[id].down].visited === false) {
-        unvisited.push(rooms[id].down);
+    if(rooms[id].down !== null){
+        if(rooms[rooms[id].down].visited === false) {
+            unvisited.push(rooms[id].down);
+        }
     }
-    if(rooms[rooms[id].left].visited === false) {
-        unvisited.push(rooms[id].left);
+    if(rooms[id].left !== null){
+        if(rooms[rooms[id].left].visited === false) {
+            unvisited.push(rooms[id].left);
+        }
     }
     return unvisited;
 }
@@ -91,17 +101,25 @@ function mapInvalid() {
     let activeRoom = currentRoom;
     let unvisitedNeighbors = null;
     let visitedStack = [];
-    let routeFound = true;
+    let routeFound = false;
 
     while(routeFound !== true) {
         rooms[activeRoom].visited = true
         if(rooms[activeRoom].endRoom === true) {
-            //end search
+            return false;
         }
         unvisitedNeighbors = getUnvisitedNeighbors(activeRoom);
+        if(unvisitedNeighbors.length > 0) {
+            visitedStack.push(activeRoom)
+            activeRoom = unvisitedNeighbors[0];
+        } else {
+            if(visitedStack.length > 0) {
+                activeRoom = visitedStack.pop();
+            } else {
+                return true;
+            }
+        }
     }
-
-    return false;
 }
 
 function displayMap() {
