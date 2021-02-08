@@ -70,7 +70,37 @@ function generateRandomEndRoom() {
     }
 }
 
+function getUnvisitedNeighbors(id) {
+    let unvisited = []
+    if(rooms[rooms[id].up].visited === false) {
+        unvisited.push(rooms[id].up);
+    }
+    if(rooms[rooms[id].right].visited === false) {
+        unvisited.push(rooms[id].right);
+    }
+    if(rooms[rooms[id].down].visited === false) {
+        unvisited.push(rooms[id].down);
+    }
+    if(rooms[rooms[id].left].visited === false) {
+        unvisited.push(rooms[id].left);
+    }
+    return unvisited;
+}
+
 function mapInvalid() {
+    let activeRoom = currentRoom;
+    let unvisitedNeighbors = null;
+    let visitedStack = [];
+    let routeFound = true;
+
+    while(routeFound !== true) {
+        rooms[activeRoom].visited = true
+        if(rooms[activeRoom].endRoom === true) {
+            //end search
+        }
+        unvisitedNeighbors = getUnvisitedNeighbors(activeRoom);
+    }
+
     return false;
 }
 

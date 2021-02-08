@@ -2,6 +2,7 @@ class room {
 
     id = null;
     endRoom = false;
+    visited = false;
     availableDirections = 4;
     up = '';
     right = '';
