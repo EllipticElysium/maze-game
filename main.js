@@ -24,14 +24,19 @@ function displayMap() {
 
 function displayRoom(id) {
     console.log(rooms[id]);
+    $('#info #up').text('up:   ' + rooms[id].up);
+    $('#info #right').text('right:   ' + rooms[id].right);
+    $('#info #down').text('down:   ' + rooms[id].down);
+    $('#info #left').text('left:   ' + rooms[id].left);
 }
 
 function changeRoom(id, direction) {
     let newRoom = rooms[id].changeRoom(direction);
     if(newRoom !== null) {
         currentRoom = newRoom;
+        $('#info #error').text("");
     } else {
-        console.log("you can't go that way")
+        $('#info #error').text("you can't go that way");
     }
 }
 
