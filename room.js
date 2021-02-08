@@ -4,21 +4,21 @@ class room {
     availableDirections = 4;
     up = '';
     right = '';
-    dowm = '';
+    down = '';
     left = '';
 
     constructor(id, gridSize) {
         this.id = id;
         this.up = id - gridSize;
         this.right = id + 1;
-        this.dowm = id + gridSize;
+        this.down = id + gridSize;
         this.left = id - 1;
         if(id < gridSize) {
             this.up = null;
             this.availableDirections --;
         } else if (id >= ((gridSize ** 2) - gridSize)) {
             this.availableDirections --;
-            this.dowm = null;
+            this.down = null;
         }
         if((id % gridSize) === 0) {
             this.availableDirections --;
@@ -30,6 +30,6 @@ class room {
     }
 
     changeRoom(direction) {
-        console.log(this[direction]);
+        return this[direction];
     }
 }
