@@ -6,6 +6,8 @@ class room {
     right = '';
     down = '';
     left = '';
+    items = {};
+    enemies = {};
 
     constructor(id, gridSize) {
         this.id = id;
@@ -27,6 +29,14 @@ class room {
             this.availableDirections --;
             this.right = null;
         }
+
+        if(Math.random() <= 0.4) {
+            this.items.test = 100;
+        }
+        if(Math.random() <= 0.1) {
+            this.enemies.test = ['ogre', 'club'];
+        }
+        
     }
 
     changeRoom(direction) {
