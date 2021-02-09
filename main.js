@@ -8,6 +8,7 @@ let gameFinished = false;
 
 let rooms = [];
 let currentRoom = null;
+let player = new Player();
 
 function displayMap() {
     let map = [];
@@ -53,6 +54,7 @@ function playGame() {
     setupGame();
     displayMap();
     displayRoom(currentRoom);
+    updatePlayer();
 }
 
 
