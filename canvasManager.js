@@ -13,7 +13,8 @@ const ctxItems = canvasItems.getContext('2d');
 const ctxBackground = canvasBackground.getContext('2d');
 const ctxPlayer = canvasPlayer.getContext('2d');
 
-function drawBackground(id) {
+function drawBackground() {
+    let id = currentRoom;
     console.log('draw background:  ', rooms[id]);
 
     ctxBackground.beginPath();
