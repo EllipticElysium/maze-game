@@ -80,11 +80,3 @@ class Player {
         return returnVal
     }
 }
-
-class Treasure {
-    //
-}
-
-class Enemy {
-    //
-}
