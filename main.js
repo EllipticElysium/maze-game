@@ -25,10 +25,7 @@ function displayMap() {
 
 function displayRoom(id) {
     console.log(rooms[id]);
-    $('#info #up').text('up:   ' + rooms[id].up);
-    $('#info #right').text('right:   ' + rooms[id].right);
-    $('#info #down').text('down:   ' + rooms[id].down);
-    $('#info #left').text('left:   ' + rooms[id].left);
+    drawBackground(id);
 }
 
 function changeRoom(id, direction) {
