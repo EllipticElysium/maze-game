@@ -18,7 +18,7 @@ function drawBackground() {
     let id = currentRoom;
 
     ctxBackground.beginPath();
-    ctxBackground.lineWidth = 5;
+    ctxBackground.lineWidth = 10;
     ctxBackground.moveTo(0, 0);
     ctxBackground.lineTo(canvasBackground.width*(5/12), 0);
     if(rooms[id].up) {
