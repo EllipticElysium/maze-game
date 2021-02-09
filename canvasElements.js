@@ -46,7 +46,7 @@ class Player {
 
     hitTopDoor() {
         if(
-            rooms[currentRoom].up &&
+            rooms[currentRoom].up !== null &&
             this.y - this.radius + this.dy < 0 &&
             this.x > canvasPlayer.width*(5/12) &&
             this.x < canvasPlayer.width*(7/12)
@@ -59,7 +59,7 @@ class Player {
 
     hitRightDoor() {
         if(
-            rooms[currentRoom].right &&
+            rooms[currentRoom].right !== null &&
             this.x + this.radius + this.dx > canvasPlayer.width &&
             this.y > canvasPlayer.height*(5/12) &&
             this.y < canvasPlayer.height*(7/12)
@@ -72,8 +72,8 @@ class Player {
 
     hitBottomDoor() {
         if(
-            rooms[currentRoom].down &&
-            this.y + this.radius + this.dx > canvasPlayer.height &&
+            rooms[currentRoom].down !== null &&
+            this.y + this.radius + this.dy > canvasPlayer.height &&
             this.x > canvasPlayer.width*(5/12) &&
             this.x < canvasPlayer.width*(7/12)
         ) {
@@ -85,7 +85,7 @@ class Player {
 
     hitLeftDoor() {
         if(
-            rooms[currentRoom].left &&
+            rooms[currentRoom].left !== null &&
             this.x - this.radius + this.dx < 0 &&
             this.y > canvasPlayer.height*(5/12) &&
             this.y < canvasPlayer.height*(7/12)

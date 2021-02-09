@@ -14,6 +14,7 @@ const ctxBackground = canvasBackground.getContext('2d');
 const ctxPlayer = canvasPlayer.getContext('2d');
 
 function drawBackground() {
+    ctxBackground.clearRect(0,0, canvasBackground.width, canvasBackground.height);
     let id = currentRoom;
     console.log('draw background:  ', rooms[id]);
 
