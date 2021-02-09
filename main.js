@@ -21,13 +21,10 @@ function displayMap() {
                 map[i].push(0);
             }
         }
+        console.log(map[i]);
     }
 }
 
-// function displayRoom(id) {
-//     console.log(rooms[id]);
-//     drawBackground(id);
-// }
 
 function changeRoom(id, direction) {
     let newRoom = rooms[id].changeRoom(direction);
@@ -54,7 +51,6 @@ function playGame() {
     setupGame();
     displayMap();
     drawBackground();
-    //displayRoom(currentRoom);
     updatePlayer();
 }
 
