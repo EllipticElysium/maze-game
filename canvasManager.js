@@ -13,9 +13,6 @@ const ctxItems = canvasItems.getContext('2d');
 const ctxBackground = canvasBackground.getContext('2d');
 const ctxPlayer = canvasPlayer.getContext('2d');
 
-let x = 5;
-let y = 5;
-
 function drawBackground(id) {
     console.log('draw background:  ', rooms[id]);
 
@@ -63,30 +60,44 @@ function clearPlayer() {
 function drawPlayer() {
     ctxPlayer.beginPath();
     ctxPlayer.arc(player.x, player.y, player.radius, 0, Math.PI * 2);
+    ctxPlayer.fillStyle = 'purple';
     ctxPlayer.fill();
-}
-
-function test() {
-    player.x += player.dx;
-    player.y += player.dy;
 }
 
 function updatePlayer() {
     clearPlayer();
-    test();
+    player.move();
     drawPlayer();
 
     requestAnimationFrame(updatePlayer)
 }
 
 function keyDown(e) {
-    if(e.key === 'ArrowRight' || e.key === 'Right') {
+    if(e.key === 'ArrowUp' || e.key === 'Up') {
+        player.dy = - player.speed;
+    } else if(e.key === 'ArrowRight' || e.key === 'Right') {
         player.dx = player.speed;
+    } else if(e.key === 'ArrowDown' || e.key === 'Down') {
+        player.dy = player.speed;
+    } else if(e.key === 'ArrowLeft' || e.key === 'Left') {
+        player.dx = -player.speed;
+    }
+}
+
+function keyUp(e) {
+    if(
+        e.key === 'ArrowUp' || e.key === 'UP' ||
+        e.key === 'ArrowRight' || e.key === 'Right' ||
+        e.key === 'ArrowDown' || e.key === 'Down' ||
+        e.key === 'ArrowLeft' || e.key === 'Left'
+    ) {
+        player.dx = 0;
+        player.dy = 0;
     }
 }
 
 document.addEventListener('keydown', keyDown);
-document.addEventListener('keyup', keyUP);
+document.addEventListener('keyup', keyUp);
 
 
 
