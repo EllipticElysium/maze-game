@@ -1,6 +1,7 @@
 const settings = {
-    gridSize: 25,
-    removed: 0.4
+    gridSize: 30,
+    removed: 0.5,
+    minimumNodes: 100
 };
 
 let gameFinished = false;

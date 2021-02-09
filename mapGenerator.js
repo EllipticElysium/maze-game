@@ -95,6 +95,7 @@ function mapInvalid() {
     let visitedStack = [];
     let routeFound = false;
     let invalid = true;
+    let availableNodes = settings.gridSize ** 2;
 
     while(routeFound !== true) {
         rooms[activeRoom].visited = true
@@ -113,10 +114,18 @@ function mapInvalid() {
             }
         }
     }
+
     for (i = 0; i < rooms.length; i++) {
-        if(rooms[i] && rooms[i].visited === false) {
+        if(rooms[i] === null) {
+            availableNodes--;
+        } else if(rooms[i].visited === false) {
+            availableNodes--;
             rooms[i] = null;
         }
-      } 
+    }
+    if(availableNodes < settings.minimumNodes) {
+        invalid = true;
+    }
+    console.log('available nodes:   ', availableNodes);
     return invalid;
 }
