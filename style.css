@@ -1,0 +1,20 @@
+body {
+    margin: 0;
+}
+
+.canvas-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.canvas {
+    position: absolute;
+    height: 85vh;
+    width: 85vh;
+}
+
+#canvas-background {
+    background-color: lightblue;
+}

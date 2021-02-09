@@ -20,7 +20,6 @@ function displayMap() {
                 map[i].push(0);
             }
         }
-        console.log(map[i]);
     }
 }
 
