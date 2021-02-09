@@ -8,7 +8,11 @@ class room {
     right = '';
     down = '';
     left = '';
-    items = {};
+    contents = {
+        treasure: [],
+        items: [],
+        enemies: []
+    };
     enemies = {};
 
     constructor(id, gridSize) {
@@ -34,10 +38,10 @@ class room {
         }
 
         if(Math.random() <= 0.4) {
-            this.items.test = 100;
+            this.contents.treasure.push(new Treasure());
         }
-        if(Math.random() <= 0.1) {
-            this.enemies.test = ['ogre', 'club'];
+        if(Math.random() <= 0.2) {
+            this.contents.enemies.push(new Enemy());
         }
         
     }
