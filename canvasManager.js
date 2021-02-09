@@ -16,9 +16,9 @@ const ctxPlayer = canvasPlayer.getContext('2d');
 function drawBackground() {
     ctxBackground.clearRect(0,0, canvasBackground.width, canvasBackground.height);
     let id = currentRoom;
-    console.log('draw background:  ', rooms[id]);
 
     ctxBackground.beginPath();
+    ctxBackground.lineWidth = 5;
     ctxBackground.moveTo(0, 0);
     ctxBackground.lineTo(canvasBackground.width*(5/12), 0);
     if(rooms[id].up) {
