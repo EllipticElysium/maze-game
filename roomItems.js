@@ -16,9 +16,10 @@ class Item {
     }
 
     update() {
-        if(this.hitItem()) {
-            console.log('hit');
-        }
+        this.detectHit();
+        // if(this.hitItem()) {
+        //     console.log('hit');
+        // }
     }
 
     hit(target) {
@@ -43,8 +44,10 @@ class Treasure extends Item {
         this.value = Math.floor(Math.random() * (1000));
     }
 
-    hitItem() {
-        return this.hit(player);
+    detectHit() {
+        if(this.hit(player)) {
+            console.log('player hit treasuer!');
+        }
     }
 }
 
@@ -53,7 +56,9 @@ class Enemy extends Item {
     constructor() {
         super(50);
     }
-    hitItem() {
-        return this.hit(player);
+    detectHit() {
+        if(this.hit(player)) {
+            console.log('player hit enemy!');
+        }
     }
 }
