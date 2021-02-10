@@ -57,6 +57,14 @@ class Enemy extends Item {
         super(50);
     }
     detectHit() {
+        let self = this;
+        Object.keys(player.projectiles).forEach(function(index) {
+            let Projectile = player.projectiles[index];
+            if(self.hit(Projectile)) {
+                console.log('projectile hit enemy!');
+                delete player.projectiles[Projectile.index];
+            }
+        })
         if(this.hit(player)) {
             console.log('player hit enemy!');
         }
