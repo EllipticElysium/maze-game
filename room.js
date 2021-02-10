@@ -10,7 +10,6 @@ class room {
     left = '';
     contents = {
         treasure: [],
-        items: [],
         enemies: []
     };
     enemies = {};
@@ -36,12 +35,34 @@ class room {
             this.availableDirections --;
             this.right = null;
         }
-
-        if(Math.random() <= 0.4) {
+        let probabilities = [
+            [0.8, 0.6],
+            [0.4, 0.3],
+            [0.1, 0.1]
+        ];
+        //for some reason a loop seems to break everything here
+        if(Math.random() <= probabilities[0][0]) {
             let index = this.contents.treasure.length;
             this.contents.treasure.push(new Treasure(index));
         }
-        if(Math.random() <= 0.2) {
+        if(Math.random() <= probabilities[1][0]) {
+            let index = this.contents.treasure.length;
+            this.contents.treasure.push(new Treasure(index));
+        }
+        if(Math.random() <= probabilities[2][0]) {
+            let index = this.contents.treasure.length;
+            this.contents.treasure.push(new Treasure(index));
+        }
+
+        if(Math.random() <= probabilities[0][1]) {
+            let index = this.contents.enemies.length;
+            this.contents.enemies.push(new Enemy(index));
+        }
+        if(Math.random() <= probabilities[1][1]) {
+            let index = this.contents.enemies.length;
+            this.contents.enemies.push(new Enemy(index));
+        }
+        if(Math.random() <= probabilities[2][1]) {
             let index = this.contents.enemies.length;
             this.contents.enemies.push(new Enemy(index));
         }

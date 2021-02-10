@@ -108,4 +108,9 @@ class Player {
         this.projectiles[this.projectileCounter] = new Projectile(x, y, this.projectileCounter);
         this.projectileCounter ++;
     }
+
+    updateScore(value) {
+        this.score += value;
+        //update score on screen
+    }
 }

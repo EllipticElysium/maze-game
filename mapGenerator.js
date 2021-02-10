@@ -17,8 +17,14 @@ function setupGame() {
         console.log('rebuilding map');
         setupGame();
     }
+    
+    rooms[currentRoom].contents = {
+        treasure: [],
+        enemies: []
+    };
+
     console.log('startroom', currentRoom);
-}
+    }
 
 function deleteRoom(id) {
     let up = rooms[id].up

@@ -45,7 +45,7 @@ class Treasure extends Item {
 
     detectHit() {
         if(this.hit(player)) {
-            player.score += this.value;
+            player.updateScore(this.value);
             rooms[currentRoom].contents.treasure.pop();
             console.log(player.score);
         }
@@ -107,7 +107,7 @@ class Enemy extends Item {
         if(this.hit(player)) {
             if(this.overlay === false) {
                 this.overlay = true;
-                player.score -= 200;
+                player.updateScore(-200);
                 console.log(player.score);
             }
         } else {
