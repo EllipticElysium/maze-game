@@ -38,12 +38,24 @@ function nextTurn(action) {
     displayRoom(currentRoom);
 }
 
+function startTimer() {
+    let start = Date.now();
+    setInterval(function() {
+        let time = Date.now() - start;
+        player.time = Math.floor(time / 1000)
+
+        $('#time').text("Time:  " + player.time);
+    }, 100);
+
+}
+
 function playGame() {
     setupGame();
     displayMap();
     drawBackground();
     updateItems();
     updatePlayer();
+    startTimer();
 }
 
 

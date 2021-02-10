@@ -6,6 +6,7 @@ class Player {
     dx = 0;
     dy = 0;
     score = 0;
+    time = 0;
     projectileCounter = 0;
     projectiles = {};
 
