@@ -110,7 +110,9 @@ class Player {
     }
 
     updateScore(value) {
+        console.log(1, this.score);
         this.score += value;
-        //update score on screen
+        $('#score').text("Score:  " + this.score);
+        console.log(2, this.score);
     }
 }
