@@ -5,6 +5,7 @@ class Player {
     speed = 10;
     dx = 0;
     dy = 0;
+    score = 0;
 
     move() {
         if(this.canMove()) {

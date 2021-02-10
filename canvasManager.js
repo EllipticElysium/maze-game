@@ -53,13 +53,13 @@ function drawBackground() {
     ctxBackground.lineTo(0, 0);
 
     ctxBackground.stroke();
-    drawItems()
 }
 
 function drawItems() {
     ctxItems.clearRect(0, 0, canvasItems.width, canvasItems.height);
 
     rooms[currentRoom].contents.treasure.forEach(function(treasure) {
+        treasure.update();
         ctxItems.beginPath();
         ctxItems.arc(treasure.x, treasure.y, treasure.radius, 0, Math.PI * 2);
         ctxItems.fillStyle = 'gold';
@@ -90,7 +90,13 @@ function updatePlayer() {
     player.move();
     drawPlayer();
 
-    requestAnimationFrame(updatePlayer)
+    requestAnimationFrame(updatePlayer);
+}
+
+function updateItems() {
+    drawItems();
+
+    requestAnimationFrame(updateItems);
 }
 
 function keyDown(e) {

@@ -42,6 +42,7 @@ function playGame() {
     setupGame();
     displayMap();
     drawBackground();
+    updateItems();
     updatePlayer();
 }
 
