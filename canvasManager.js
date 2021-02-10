@@ -76,7 +76,8 @@ function drawItems() {
         ctxItems.fill();
     })
 
-    player.projectiles.forEach(function(Projectile) {
+    Object.keys(player.projectiles).forEach(function(index) {
+        let Projectile = player.projectiles[index];
         Projectile.move();
         ctxItems.beginPath();
         ctxItems.arc(Projectile.x, Projectile.y, Projectile.radius, 0, Math.PI * 2);
@@ -152,11 +153,3 @@ function click(e) {
 document.addEventListener('keydown', keyDown);
 document.addEventListener('keyup', keyUp);
 document.addEventListener('mousedown', click);
-
-
-
-// ctxItems.fillStyle = 'green';
-// ctxItems.fillRect(50, 50, 100, 100);
-
-// ctxPlayer.fillStyle = 'red';
-// ctxPlayer.fillRect(75, 75, 50, 50)

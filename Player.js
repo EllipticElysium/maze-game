@@ -6,7 +6,8 @@ class Player {
     dx = 0;
     dy = 0;
     score = 0;
-    projectiles = [];
+    projectileCounter = 0;
+    projectiles = {};
 
     move() {
         if(this.canMove()) {
@@ -104,6 +105,7 @@ class Player {
     }
 
     fireProjectile(x, y) {
-        this.projectiles.push(new Projectile(x, y));
+        this.projectiles[this.projectileCounter] = new Projectile(x, y, this.projectileCounter);
+        this.projectileCounter ++;
     }
 }
