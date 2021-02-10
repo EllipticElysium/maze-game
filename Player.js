@@ -101,4 +101,8 @@ class Player {
     playerWon() {
         console.log('win!!!');
     }
+
+    fireProjectile(x, y) {
+        console.log('projectile', x, y);
+    }
 }

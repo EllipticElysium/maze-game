@@ -13,6 +13,8 @@ const ctxItems = canvasItems.getContext('2d');
 const ctxBackground = canvasBackground.getContext('2d');
 const ctxPlayer = canvasPlayer.getContext('2d');
 
+let canvasRect = canvasBackground.getBoundingClientRect();
+
 function drawBackground() {
     ctxBackground.clearRect(0,0, canvasBackground.width, canvasBackground.height);
     let id = currentRoom;
@@ -124,8 +126,24 @@ function keyUp(e) {
     }
 }
 
+function click(e) {
+    if(e.button === 0) {
+        if(
+            e.clientY >= canvasRect.top &&
+            e.clientY <= canvasRect.bottom &&
+            e.clientX >= canvasRect.left &&
+            e.clientX <= canvasRect.right
+        ) {
+            let x = e.clientX - canvasRect.x;
+            let y = e.clientY - canvasRect.y;
+            player.fireProjectile(x, y);
+        }
+    }
+}
+
 document.addEventListener('keydown', keyDown);
 document.addEventListener('keyup', keyUp);
+document.addEventListener('mousedown', click);
 
 
 
