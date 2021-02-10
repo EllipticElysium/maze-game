@@ -177,3 +177,6 @@ function click(e) {
 document.addEventListener('keydown', keyDown);
 document.addEventListener('keyup', keyUp);
 document.addEventListener('mousedown', click);
+
+//detect space bar
+//paints a red x on the floor to mark that the player has visited there before
