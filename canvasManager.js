@@ -118,17 +118,21 @@ function drawPlayer() {
 }
 
 function updatePlayer() {
-    clearPlayer();
-    player.move();
-    drawPlayer();
+    if(player.finished !== true) {
+        clearPlayer();
+        player.move();
+        drawPlayer();
 
-    requestAnimationFrame(updatePlayer);
+        requestAnimationFrame(updatePlayer);
+    }
 }
 
 function updateItems() {
-    drawItems();
+    if(player.finished !== true) {
+        drawItems();
 
-    requestAnimationFrame(updateItems);
+        requestAnimationFrame(updateItems);
+    }
 }
 
 function keyDown(e) {

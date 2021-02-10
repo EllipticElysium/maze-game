@@ -2,12 +2,18 @@ body {
     margin: 0;
 }
 
-.canvas-container {
+.container {
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: darkslategrey;
+}
+.canvas-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: darkslategrey;
 }
 
 .canvas {
@@ -22,9 +28,15 @@ body {
 }
 
 .score-container {
-    align-self: flex-start;
     width: 85vh;
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
+}
+
+.result-container {
+    width: 85vh;
+    display: flex;
+    justify-content: center;
     align-items: center;
 }

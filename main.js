@@ -41,10 +41,12 @@ function nextTurn(action) {
 function startTimer() {
     let start = Date.now();
     setInterval(function() {
-        let time = Date.now() - start;
-        player.time = Math.floor(time / 1000)
-
-        $('#time').text("Time:  " + player.time);
+        if(player.finished !== true) {
+            let time = Date.now() - start;
+            player.time = Math.floor(time / 1000)
+    
+            $('#time').text("Time:  " + player.time);
+        }
     }, 100);
 
 }

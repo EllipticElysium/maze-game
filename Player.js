@@ -7,6 +7,7 @@ class Player {
     dy = 0;
     score = 0;
     time = 0;
+    finished = false;
     projectileCounter = 0;
     projectiles = {};
 
@@ -102,7 +103,8 @@ class Player {
     }
 
     playerWon() {
-        console.log('win!!!');
+        this.finished = true;
+        $('#result').text("You Win!!!");
     }
 
     fireProjectile(x, y) {
@@ -111,9 +113,7 @@ class Player {
     }
 
     updateScore(value) {
-        console.log(1, this.score);
         this.score += value;
         $('#score').text("Score:  " + this.score);
-        console.log(2, this.score);
     }
 }
