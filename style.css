@@ -7,8 +7,15 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: darkslategrey;
 }
 
 .canvas {
     position: absolute;
+}
+
+.background-image-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
 }

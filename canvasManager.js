@@ -2,12 +2,14 @@ const canvasBackground = document.getElementById('canvas-background');
 const canvasItems = document.getElementById('canvas-items');
 const canvasPlayer = document.getElementById('canvas-player');
 
-canvasBackground.width = window.innerHeight * 0.80;
-canvasBackground.height = window.innerHeight * 0.80;
-canvasItems.width = window.innerHeight * 0.80;
-canvasItems.height = window.innerHeight * 0.80;
-canvasPlayer.width = window.innerHeight * 0.80;
-canvasPlayer.height = window.innerHeight * 0.80;
+let gameDimensions = window.innerHeight * 0.80;
+
+canvasBackground.width = gameDimensions;
+canvasBackground.height = gameDimensions;
+canvasItems.width = gameDimensions;
+canvasItems.height = gameDimensions;
+canvasPlayer.width = gameDimensions;
+canvasPlayer.height = gameDimensions;
 
 const ctxItems = canvasItems.getContext('2d');
 const ctxBackground = canvasBackground.getContext('2d');
@@ -15,12 +17,29 @@ const ctxPlayer = canvasPlayer.getContext('2d');
 
 let canvasRect = canvasBackground.getBoundingClientRect();
 
+$('.background-image').width(gameDimensions/2);
+$('.background-image').height(gameDimensions/2);
+
+
 function drawBackground() {
     ctxBackground.clearRect(0,0, canvasBackground.width, canvasBackground.height);
     let id = currentRoom;
 
     ctxBackground.beginPath();
-    ctxBackground.lineWidth = 10;
+    ctxBackground.moveTo(0, 0);
+    ctxBackground.strokeStyle = 'green';
+    ctxBackground.lineWidth = 20;
+    ctxBackground.lineTo(canvasBackground.width, 0);
+    ctxBackground.lineTo(canvasBackground.width, canvasBackground.height);
+    ctxBackground.lineTo(0, canvasBackground.height);
+    ctxBackground.lineTo(0, 0);
+    ctxBackground.stroke();
+
+
+
+    ctxBackground.beginPath();
+    ctxBackground.strokeStyle = 'black';
+    ctxBackground.lineWidth = 20;
     ctxBackground.moveTo(0, 0);
     ctxBackground.lineTo(canvasBackground.width*(5/12), 0);
     if(rooms[id].up) {
@@ -28,6 +47,7 @@ function drawBackground() {
     } else {
         ctxBackground.lineTo(canvasBackground.width*(7/12), 0);
     }
+    
     ctxBackground.lineTo(canvasBackground.width, 0);
 
     ctxBackground.lineTo(canvasBackground.width, canvasBackground.height*(5/12));
