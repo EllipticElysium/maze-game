@@ -40,14 +40,14 @@ class Treasure extends Item {
     constructor(index) {
         super(canvasBackground.height/20);
         this.index = index;
-        this.value = Math.floor(Math.random() * (100)) * 10;
+        this.value = Math.floor(Math.random() * (10)) * 100;
     }
 
     detectHit() {
         if(this.hit(player)) {
             player.score += this.value;
             rooms[currentRoom].contents.treasure.pop();
-            console.log('player hit treasuer!');
+            console.log(player.score);
         }
     }
 }
@@ -64,6 +64,7 @@ class Enemy extends Item {
     speed = null;
     dx = 1;
     dy = 1;
+    overlay = false;
 
     constructor(index) {
         super(1);
@@ -104,7 +105,13 @@ class Enemy extends Item {
             }
         })
         if(this.hit(player)) {
-            console.log('player hit enemy!');
+            if(this.overlay === false) {
+                this.overlay = true;
+                player.score -= 200;
+                console.log(player.score);
+            }
+        } else {
+            this.overlay = false;
         }
     }
 
