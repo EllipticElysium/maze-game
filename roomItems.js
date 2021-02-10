@@ -16,17 +16,17 @@ class Item {
     }
 
     update() {
-        if(this.hit()) {
+        if(this.hitItem()) {
             console.log('hit');
         }
     }
 
-    hit() {
+    hit(target) {
         if(
-            ((this.radius - player.radius) ** 2) <= 
-            ((this.x - player.x) ** 2 + (this.y - player.y) ** 2) &&
-            ((this.x - player.x) ** 2 + (this.y - player.y) ** 2) <=
-            ((this.radius + player.radius) ** 2)
+            ((this.radius - target.radius) ** 2) <= 
+            ((this.x - target.x) ** 2 + (this.y - target.y) ** 2) &&
+            ((this.x - target.x) ** 2 + (this.y - target.y) ** 2) <=
+            ((this.radius + target.radius) ** 2)
         ) {
             return true;
         } else {
@@ -42,11 +42,18 @@ class Treasure extends Item {
         super(25);
         this.value = Math.floor(Math.random() * (1000));
     }
+
+    hitItem() {
+        return this.hit(player);
+    }
 }
 
 class Enemy extends Item {
 
     constructor() {
         super(50);
+    }
+    hitItem() {
+        return this.hit(player);
     }
 }

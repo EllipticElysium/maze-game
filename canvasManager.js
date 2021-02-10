@@ -67,6 +67,7 @@ function drawItems() {
     })
 
     rooms[currentRoom].contents.enemies.forEach(function(enemy) {
+        enemy.update();
         ctxItems.beginPath();
         ctxItems.arc(enemy.x, enemy.y, enemy.radius, 0, Math.PI * 2);
         ctxItems.fillStyle = 'red';
