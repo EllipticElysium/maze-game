@@ -14,11 +14,17 @@ class Player {
 
         let roomChange = this.hitDoor();
 
+        let collectItem = this.hitItem();
+
         if(roomChange !== false) {
             currentRoom = rooms[currentRoom].changeRoom(roomChange.direction);
             drawBackground()
             this.x = roomChange.x;
             this.y = roomChange.y;
+        }
+
+        if(collectItem !== false) {
+            //
         }
     }
 
@@ -74,9 +80,24 @@ class Player {
             returnVal.x = canvasPlayer.width - this.radius - ctxBackground.lineWidth;
             returnVal.y = this.y;
         } else {
-            return false;
+            returnVal = false;
+        }
+
+        if(returnVal !== false) {
+            if(rooms[currentRoom][returnVal.direction] === 'end') {
+                this.playerWon();
+                returnVal = false;
+            }
         }
 
         return returnVal
+    }
+
+    hitItem() {
+        return false;
+    }
+
+    playerWon() {
+        console.log('win!!!');
     }
 }

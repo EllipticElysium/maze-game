@@ -20,7 +20,7 @@ class Treasure extends Item {
     value = 0;
 
     constructor() {
-        super(10);
+        super(25);
         this.value = Math.floor(Math.random() * (1000));
     }
 }
@@ -28,6 +28,6 @@ class Treasure extends Item {
 class Enemy extends Item {
 
     constructor() {
-        super(15);
+        super(50);
     }
 }

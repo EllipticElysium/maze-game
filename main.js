@@ -28,16 +28,7 @@ function displayMap() {
 
 function changeRoom(id, direction) {
     let newRoom = rooms[id].changeRoom(direction);
-    if(newRoom !== null) {
-        currentRoom = newRoom;
-        if(rooms[currentRoom].endRoom === true) {
-            $('#info #general').text("Winner!!!!");
-        } else {
-            $('#info #general').text("");
-        }
-    } else {
-        $('#info #general').text("you can't go that way");
-    }
+    currentRoom = newRoom;
 }
 
 function nextTurn(action) {

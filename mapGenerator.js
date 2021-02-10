@@ -57,6 +57,20 @@ function generateRandomRoom() {
 function generateRandomEndRoom() {
     let id = generateRandomRoom();
     if(rooms[id].availableDirections !== 4 && id !== currentRoom) {
+        let endDoor = false;
+        let directions = ['up', 'right', 'down', 'left'];
+        let direction = null;
+        let index = null;
+        while(endDoor === false) {
+            index = Math.floor(Math.random() * (directions.length));
+            direction = directions[index];
+            if(rooms[id][direction] === null) {
+                endDoor = true;
+                rooms[id][direction] = 'end';
+            } else {
+                directions.splice(index, 1);
+            }
+        }
         rooms[id].endRoom = true;
         console.log('end room:  ', id);
     } else {
@@ -66,22 +80,22 @@ function generateRandomEndRoom() {
 
 function getUnvisitedNeighbors(id) {
     let unvisited = []
-    if(rooms[id].up !== null){
+    if(rooms[id].up !== null && rooms[id].up !== 'end'){
         if(rooms[rooms[id].up].visited === false) {
             unvisited.push(rooms[id].up);
         }
     }
-    if(rooms[id].right !== null){
+    if(rooms[id].right !== null && rooms[id].right !== 'end'){
         if(rooms[rooms[id].right].visited === false) {
             unvisited.push(rooms[id].right);
         }
     }
-    if(rooms[id].down !== null){
+    if(rooms[id].down !== null && rooms[id].down !== 'end'){
         if(rooms[rooms[id].down].visited === false) {
             unvisited.push(rooms[id].down);
         }
     }
-    if(rooms[id].left !== null){
+    if(rooms[id].left !== null && rooms[id].left !== 'end'){
         if(rooms[rooms[id].left].visited === false) {
             unvisited.push(rooms[id].left);
         }
