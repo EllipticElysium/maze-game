@@ -75,6 +75,14 @@ function drawItems() {
         ctxItems.fillStyle = 'red';
         ctxItems.fill();
     })
+
+    player.projectiles.forEach(function(Projectile) {
+        Projectile.move();
+        ctxItems.beginPath();
+        ctxItems.arc(Projectile.x, Projectile.y, Projectile.radius, 0, Math.PI * 2);
+        ctxItems.fillStyle = 'blue';
+        ctxItems.fill();
+    })
 }
 
 function clearPlayer() {

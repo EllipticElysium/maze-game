@@ -6,6 +6,7 @@ class Player {
     dx = 0;
     dy = 0;
     score = 0;
+    projectiles = [];
 
     move() {
         if(this.canMove()) {
@@ -103,6 +104,6 @@ class Player {
     }
 
     fireProjectile(x, y) {
-        console.log('projectile', x, y);
+        this.projectiles.push(new Projectile(x, y));
     }
 }
