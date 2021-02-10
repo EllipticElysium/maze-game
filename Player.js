@@ -1,7 +1,7 @@
 class Player {
     x = canvasBackground.width/2;
-    y = canvasBackground.width/2;
-    radius = 20;
+    y = canvasBackground.height/2;
+    radius = canvasBackground.height/40;
     speed = 10;
     dx = 0;
     dy = 0;

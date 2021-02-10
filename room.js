@@ -38,10 +38,12 @@ class room {
         }
 
         if(Math.random() <= 0.4) {
-            this.contents.treasure.push(new Treasure());
+            let index = this.contents.treasure.length;
+            this.contents.treasure.push(new Treasure(index));
         }
         if(Math.random() <= 0.2) {
-            this.contents.enemies.push(new Enemy());
+            let index = this.contents.enemies.length;
+            this.contents.enemies.push(new Enemy(index));
         }
         
     }

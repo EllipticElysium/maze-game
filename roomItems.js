@@ -1,4 +1,5 @@
 class Item {
+    index = null;
     x = 0;
     y = 0;
     radius = 0;
@@ -17,9 +18,6 @@ class Item {
 
     update() {
         this.detectHit();
-        // if(this.hitItem()) {
-        //     console.log('hit');
-        // }
     }
 
     hit(target) {
@@ -39,23 +37,61 @@ class Item {
 class Treasure extends Item {
     value = 0;
 
-    constructor() {
-        super(25);
-        this.value = Math.floor(Math.random() * (1000));
+    constructor(index) {
+        super(canvasBackground.height/20);
+        this.index = index;
+        this.value = Math.floor(Math.random() * (100)) * 10;
     }
 
     detectHit() {
         if(this.hit(player)) {
+            player.score += this.value;
+            rooms[currentRoom].contents.treasure.pop();
             console.log('player hit treasuer!');
         }
     }
 }
 
 class Enemy extends Item {
-
-    constructor() {
-        super(50);
+    levels = {
+        '1': [7, 10],
+        '2': [10, 8],
+        '3': [15, 6],
+        '4': [20, 4],
+        '5': [25, 2]
     }
+    level = null;
+    speed = null;
+    dx = 1;
+    dy = 1;
+
+    constructor(index) {
+        super(1);
+        this.level = Math.floor(Math.random() * (4)) +1;
+        this.index = index;
+        this.dx *= (-1) ** Math.floor(Math.random() * (10));
+        this.dy *= (-1) ** Math.floor(Math.random() * (10));
+    }
+
+    update() {
+        this.radius = this.levels[this.level][0];
+        this.speed = this.levels[this.level][1];
+        if(
+            this.x + this.radius + this.dx > canvasBackground.width - ctxBackground.lineWidth ||
+            this.x - this.radius + this.dx < 0 + ctxBackground.lineWidth
+            ) {
+            this.dx *= -1;
+        }
+        if(
+            this.y + this.radius + this.dy > canvasBackground.height - ctxBackground.lineWidth ||
+            this.y - this.radius + this.dy < 0 + ctxBackground.lineWidth
+        ) {
+            this.dy *= -1;
+        }
+        this.x += this.speed * this.dx;
+        this.y += this.speed * this.dy; 
+    }
+
     detectHit() {
         let self = this;
         Object.keys(player.projectiles).forEach(function(index) {

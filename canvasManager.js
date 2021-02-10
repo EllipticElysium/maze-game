@@ -2,12 +2,12 @@ const canvasBackground = document.getElementById('canvas-background');
 const canvasItems = document.getElementById('canvas-items');
 const canvasPlayer = document.getElementById('canvas-player');
 
-canvasBackground.width = window.innerHeight * 0.75;
-canvasBackground.height = window.innerHeight * 0.75;
-canvasItems.width = window.innerHeight * 0.75;
-canvasItems.height = window.innerHeight * 0.75;
-canvasPlayer.width = window.innerHeight * 0.75;
-canvasPlayer.height = window.innerHeight * 0.75;
+canvasBackground.width = window.innerHeight * 0.80;
+canvasBackground.height = window.innerHeight * 0.80;
+canvasItems.width = window.innerHeight * 0.80;
+canvasItems.height = window.innerHeight * 0.80;
+canvasPlayer.width = window.innerHeight * 0.80;
+canvasPlayer.height = window.innerHeight * 0.80;
 
 const ctxItems = canvasItems.getContext('2d');
 const ctxBackground = canvasBackground.getContext('2d');

@@ -2,7 +2,7 @@ class Projectile {
     index = null;
     x = 0;
     y = 0;
-    radius = 5;
+    radius = canvasBackground.height/100;
     angle = 0;
     speed = 5;
     dx = 0;
