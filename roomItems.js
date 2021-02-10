@@ -67,7 +67,7 @@ class Enemy extends Item {
     overlay = false;
 
     constructor(index) {
-        super(1);
+        super(25);
         this.level = Math.floor(Math.random() * (5)) +1;
         this.index = index;
         this.dx *= (-1) ** Math.floor(Math.random() * (10));
@@ -79,14 +79,14 @@ class Enemy extends Item {
         this.radius = this.levels[this.level][0];
         this.speed = this.levels[this.level][1];
         if(
-            this.x + this.radius + this.dx > canvasBackground.width - ctxBackground.lineWidth ||
-            this.x - this.radius + this.dx < 0 + ctxBackground.lineWidth
+            this.x + this.radius + this.speed * this.dx > canvasBackground.width - ctxBackground.lineWidth ||
+            this.x - this.radius + this.speed * this.dx < 0 + ctxBackground.lineWidth
             ) {
             this.dx *= -1;
         }
         if(
-            this.y + this.radius + this.dy > canvasBackground.height - ctxBackground.lineWidth ||
-            this.y - this.radius + this.dy < 0 + ctxBackground.lineWidth
+            this.y + this.radius + this.speed * this.dx > canvasBackground.height - ctxBackground.lineWidth ||
+            this.y - this.radius + this.speed * this.dx < 0 + ctxBackground.lineWidth
         ) {
             this.dy *= -1;
         }
