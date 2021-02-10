@@ -7,6 +7,7 @@ class Projectile {
     speed = 5;
     dx = 0;
     dy = 0;
+    used = false;
 
     constructor(x, y, index) {
         this.index = index;

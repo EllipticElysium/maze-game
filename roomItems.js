@@ -54,11 +54,11 @@ class Treasure extends Item {
 
 class Enemy extends Item {
     levels = {
-        '1': [7, 10],
-        '2': [10, 8],
-        '3': [15, 6],
+        '1': [7, 1],
+        '2': [10, 2],
+        '3': [15, 3],
         '4': [20, 4],
-        '5': [25, 2]
+        '5': [25, 5]
     }
     level = null;
     speed = null;
@@ -67,13 +67,14 @@ class Enemy extends Item {
 
     constructor(index) {
         super(1);
-        this.level = Math.floor(Math.random() * (4)) +1;
+        this.level = Math.floor(Math.random() * (5)) +1;
         this.index = index;
         this.dx *= (-1) ** Math.floor(Math.random() * (10));
         this.dy *= (-1) ** Math.floor(Math.random() * (10));
     }
 
     update() {
+        this.detectHit();
         this.radius = this.levels[this.level][0];
         this.speed = this.levels[this.level][1];
         if(
@@ -96,13 +97,23 @@ class Enemy extends Item {
         let self = this;
         Object.keys(player.projectiles).forEach(function(index) {
             let Projectile = player.projectiles[index];
-            if(self.hit(Projectile)) {
+            if(self.hit(Projectile) && Projectile.used === false) {
+                Projectile.used = true;
                 console.log('projectile hit enemy!');
-                delete player.projectiles[Projectile.index];
+                self.projectileHit();
             }
         })
         if(this.hit(player)) {
             console.log('player hit enemy!');
+        }
+    }
+
+    projectileHit() {
+        delete player.projectiles[Projectile.index];
+        if(this.level > 1) {
+            this.level -= 1;
+        } else {
+            delete rooms[currentRoom].contents.enemies[this.index];
         }
     }
 }
