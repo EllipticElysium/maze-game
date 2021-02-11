@@ -28,6 +28,7 @@ class Door{
         }
     }
 
+    /* istanbul ignore next */ 
     upDoor() {
         background.ctx.beginPath();
         background.ctx.strokeStyle = this.colours[this.status];
@@ -36,6 +37,7 @@ class Door{
         background.ctx.stroke();
     }
 
+    /* istanbul ignore next */ 
     rightDoor() {
         background.ctx.beginPath();
         background.ctx.strokeStyle = this.colours[this.status];
@@ -44,6 +46,7 @@ class Door{
         background.ctx.stroke();
     }
 
+    /* istanbul ignore next */ 
     downDoor() {
         background.ctx.beginPath();
         background.ctx.strokeStyle = this.colours[this.status];
@@ -52,6 +55,7 @@ class Door{
         background.ctx.stroke();
     }
 
+    /* istanbul ignore next */ 
     leftDoor() {
         background.ctx.beginPath();
         background.ctx.strokeStyle = this.colours[this.status];
@@ -62,6 +66,7 @@ class Door{
 
 }
 
+/* istanbul ignore next */ 
 if (typeof module !== 'undefined') {
     module.exports = Door;
 }
