@@ -80,7 +80,8 @@ function drawBackground() {
 function drawItems() {
     ctxItems.clearRect(0, 0, canvasItems.width, canvasItems.height);
 
-    rooms[currentRoom].contents.treasure.forEach(function(treasure) {
+    Object.keys(rooms[currentRoom].treasure).forEach(function(index) {
+        let treasure = rooms[currentRoom].treasure[index];
         treasure.update();
         ctxItems.beginPath();
         ctxItems.arc(treasure.x, treasure.y, treasure.radius, 0, Math.PI * 2);
@@ -88,7 +89,8 @@ function drawItems() {
         ctxItems.fill();
     })
 
-    rooms[currentRoom].contents.enemies.forEach(function(enemy) {
+    Object.keys(rooms[currentRoom].enemies).forEach(function(index) {
+        let enemy = rooms[currentRoom].enemies[index];
         enemy.update();
         ctxItems.beginPath();
         ctxItems.arc(enemy.x, enemy.y, enemy.radius, 0, Math.PI * 2);

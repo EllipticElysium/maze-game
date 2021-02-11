@@ -1,48 +1,27 @@
-class Player {
-    x = canvasBackground.width/2;
-    y = canvasBackground.height/2;
-    radius = canvasBackground.height/40;
-    speed = 10;
-    dx = 0;
-    dy = 0;
+class Player extends MovableElement {
     score = 0;
     time = 0;
-    finished = false;
+    won = false;
     projectileCounter = 0;
     projectiles = {};
 
+    constructor() {
+        super();
+        this.x = canvasBackground.width/2;
+        this.y = canvasBackground.height/2;
+        this.radius = canvasBackground.height/40;
+        this.speed = 5;
+    }
+
     move() {
-        if(this.canMove()) {
-            this.x += this.dx;
-            this.y += this.dy;
-        }
-
+        super.move();
         let roomChange = this.hitDoor();
-
-        let collectItem = this.hitItem();
 
         if(roomChange !== false) {
             currentRoom = rooms[currentRoom].changeRoom(roomChange.direction);
             drawBackground()
             this.x = roomChange.x;
             this.y = roomChange.y;
-        }
-
-        if(collectItem !== false) {
-            //
-        }
-    }
-
-    canMove() {
-        if(
-            this.x + this.radius + this.dx > canvasBackground.width - ctxBackground.lineWidth ||
-            this.x - this.radius + this.dx < 0 + ctxBackground.lineWidth  ||
-            this.y + this.radius + this.dy > canvasBackground.height - ctxBackground.lineWidth ||
-            this.y - this.radius + this.dy < 0 + ctxBackground.lineWidth
-            ) {
-            return false;
-        } else {
-            return true;
         }
     }
 
@@ -97,18 +76,14 @@ class Player {
 
         return returnVal
     }
-
-    hitItem() {
-        return false;
-    }
-
+    
     playerWon() {
         this.finished = true;
         $('#result').text("You Win!!!");
     }
 
     fireProjectile(x, y) {
-        this.projectiles[this.projectileCounter] = new Projectile(x, y, this.projectileCounter);
+        this.projectiles[this.projectileCounter] = new Projectile(this.projectileCounter, x, y);
         this.projectileCounter ++;
     }
 

@@ -1,59 +1,4 @@
-class Item {
-    index = null;
-    x = 0;
-    y = 0;
-    radius = 0;
-
-    constructor(radius) {
-        this.radius = radius;
-        this.generateRandomPosition();
-    }
-
-    generateRandomPosition() {
-        let width = canvasBackground.width;
-        let height = canvasBackground.height;
-        this.x = Math.floor(Math.random() * (width - (this.radius  + ctxBackground.lineWidth) * 2)) + this.radius + ctxBackground.lineWidth;
-        this.y = Math.floor(Math.random() * (height - (this.radius  + ctxBackground.lineWidth) * 2)) + this.radius + ctxBackground.lineWidth;
-    }
-
-    update() {
-        this.detectHit();
-    }
-
-    hit(target) {
-        if(
-            ((this.radius - target.radius) ** 2) <= 
-            ((this.x - target.x) ** 2 + (this.y - target.y) ** 2) &&
-            ((this.x - target.x) ** 2 + (this.y - target.y) ** 2) <=
-            ((this.radius + target.radius) ** 2)
-        ) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-}
-
-class Treasure extends Item {
-    value = 0;
-    used = false;
-
-    constructor(index) {
-        super(canvasBackground.height/20);
-        this.index = index;
-        this.value = Math.floor(Math.random() * (9)) * 100 + 100;
-    }
-
-    detectHit() {
-        if(this.hit(player) && this.used === false) {
-            this.used = true;
-            player.updateScore(this.value);
-            rooms[currentRoom].contents.treasure.splice(this.index, 1);
-        }
-    }
-}
-
-class Enemy extends Item {
+class Enemy extends GeneratedElement {
     levels = {
         '1': [7, 1],
         '2': [10, 2],
@@ -62,19 +7,23 @@ class Enemy extends Item {
         '5': [25, 5]
     }
     level = null;
-    speed = null;
-    dx = 1;
-    dy = 1;
-    overlay = false;
 
     constructor(index) {
-        super(25);
+        super();
+        this.id = index;
         this.level = Math.floor(Math.random() * (5)) +1;
-        this.index = index;
+        this.radius = this.levels[this.level][0];
+        this.speed = this.levels[this.level][1];
+        this.dx = 1;
+        this.dy = 1;
+        this.setRandomDirection();
+    }
+
+    setRandomDirection() {
         this.dx *= (-1) ** Math.floor(Math.random() * (10));
         this.dy *= (-1) ** Math.floor(Math.random() * (10));
     }
-
+    
     update() {
         this.detectHit();
         this.radius = this.levels[this.level][0];
@@ -116,11 +65,11 @@ class Enemy extends Item {
     }
 
     projectileHit() {
-        delete player.projectiles[Projectile.index];
+        delete player.projectiles[Projectile.id];
         if(this.level > 1) {
             this.level -= 1;
         } else {
-            delete rooms[currentRoom].contents.enemies[this.index];
+            delete rooms[currentRoom].enemies[this.id];
         }
     }
 }
