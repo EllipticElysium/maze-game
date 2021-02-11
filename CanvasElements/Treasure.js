@@ -12,7 +12,7 @@ class Treasure extends GeneratedElement {
         if(this.hit(player) && this.used === false) {
             this.used = true;
             player.updateScore(this.value);
-            rooms[currentRoom].contents.treasure.splice(this.index, 1);
+            delete rooms[currentRoom].treasure[this.id];
         }
     }
 }

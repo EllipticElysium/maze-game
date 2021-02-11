@@ -82,7 +82,6 @@ function drawItems() {
 
     Object.keys(rooms[currentRoom].treasure).forEach(function(index) {
         let treasure = rooms[currentRoom].treasure[index];
-        console.log(treasure);
         treasure.update();
         ctxItems.beginPath();
         ctxItems.arc(treasure.x, treasure.y, treasure.radius, 0, Math.PI * 2);
@@ -92,7 +91,6 @@ function drawItems() {
 
     Object.keys(rooms[currentRoom].enemies).forEach(function(index) {
         let enemy = rooms[currentRoom].enemies[index];
-        console.log(enemy);
         enemy.update();
         ctxItems.beginPath();
         ctxItems.arc(enemy.x, enemy.y, enemy.radius, 0, Math.PI * 2);
