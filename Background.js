@@ -16,55 +16,53 @@ class Background extends Canvas {
         this.clear();
         let id = player.currentRoom;
 
-        this.ctx.beginPath();
-        this.ctx.moveTo(0, 0);
-        this.ctx.strokeStyle = 'green';
         this.ctx.lineWidth = 20;
-        this.ctx.lineTo(this.canvas.width, 0);
-        this.ctx.lineTo(this.canvas.width, this.canvas.height);
-        this.ctx.lineTo(0, this.canvas.height);
-        this.ctx.lineTo(0, 0);
-        this.ctx.stroke();
 
+        this.createWalls();
+        this.createDoors(id);
+    }
 
-
+    createWalls() {
         this.ctx.beginPath();
         this.ctx.strokeStyle = 'black';
-        this.ctx.lineWidth = 20;
         this.ctx.moveTo(0, 0);
         this.ctx.lineTo(this.doorMin, 0);
-        if(Room.rooms[id].up) {
-            this.ctx.moveTo(this.doorMax, 0);
-        } else {
-            this.ctx.lineTo(this.doorMax, 0);
-        }
-        
+        this.ctx.moveTo(this.doorMax, 0);
         this.ctx.lineTo(this.canvas.width, 0);
-
         this.ctx.lineTo(this.canvas.width, this.doorMin);
-        if(Room.rooms[id].right) {
-            this.ctx.moveTo(this.canvas.width, this.doorMax);
-        } else {
-            this.ctx.lineTo(this.canvas.width, this.doorMax);
-        }
+        this.ctx.moveTo(this.canvas.width, this.doorMax);
         this.ctx.lineTo(this.canvas.width, this.canvas.height);
-
         this.ctx.lineTo(this.doorMax, this.canvas.height);
-        if(Room.rooms[id].down) {
-            this.ctx.moveTo(this.doorMin, this.canvas.height);
-        } else {
-            this.ctx.lineTo(this.doorMin, this.canvas.height);
-        }
+        this.ctx.moveTo(this.doorMin, this.canvas.height);
         this.ctx.lineTo(0, this.canvas.height);
-
         this.ctx.lineTo(0, this.doorMax);
-        if(Room.rooms[id].left) {
-            this.ctx.moveTo(0, this.doorMin);
-        } else {
-            this.ctx.lineTo(0, this.doorMin);
-        }
+        this.ctx.moveTo(0, this.doorMin);
         this.ctx.lineTo(0, 0);
-
         this.ctx.stroke();
+    }
+
+    createDoors(id) {
+        let upDoor = new Door('up');
+        let rightDoor = new Door('right');
+        let downDoor = new Door('down');
+        let leftDoor = new Door('left');
+
+        if(Room.rooms[id].up) {
+            upDoor.status = 'active'
+        }
+        if(Room.rooms[id].right) {
+            rightDoor.status = 'active'
+        }
+        if(Room.rooms[id].down) {
+            downDoor.status = 'active'
+        }
+        if(Room.rooms[id].left) {
+            leftDoor.status = 'active'
+        }
+
+        upDoor.draw()
+        rightDoor.draw()
+        downDoor.draw()
+        leftDoor.draw()
     }
 }
