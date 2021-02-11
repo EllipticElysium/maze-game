@@ -1,4 +1,3 @@
-const { test, expect } = require('@jest/globals');
 const Canvas = require('../Canvas');
 
 test("A new Canvas dimensions is set to 80% of the window height", () => {
