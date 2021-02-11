@@ -28,20 +28,7 @@ class Enemy extends GeneratedElement {
         this.detectHit();
         this.radius = this.levels[this.level][0];
         this.speed = this.levels[this.level][1];
-        if(
-            this.x + this.radius + this.speed * this.dx > canvasBackground.width - ctxBackground.lineWidth ||
-            this.x - this.radius + this.speed * this.dx < 0 + ctxBackground.lineWidth
-            ) {
-            this.dx *= -1;
-        }
-        if(
-            this.y + this.radius + this.speed * this.dx > canvasBackground.height - ctxBackground.lineWidth ||
-            this.y - this.radius + this.speed * this.dx < 0 + ctxBackground.lineWidth
-        ) {
-            this.dy *= -1;
-        }
-        this.x += this.speed * this.dx;
-        this.y += this.speed * this.dy; 
+        this.move();
     }
 
     detectHit() {
@@ -69,7 +56,7 @@ class Enemy extends GeneratedElement {
         if(this.level > 1) {
             this.level -= 1;
         } else {
-            delete rooms[currentRoom].enemies[this.id];
+            delete Room.rooms[player.currentRoom].enemies[this.id];
         }
     }
 }

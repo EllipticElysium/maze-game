@@ -1,17 +1,17 @@
 function setupGame() {
-    rooms = [];
+    Room.rooms = [];
 
     for (i = 0; i < settings.gridSize ** 2; i++) {
-        rooms.push(new Room(i, settings.gridSize));
+        Room.rooms.push(new Room(i, settings.gridSize));
     }
     
-    for (i = 0; i < rooms.length; i++) {
+    for (i = 0; i < Room.rooms.length; i++) {
         if(Math.random() <= settings.removed) {
             deleteRoom(i);
         }
     }
 
-    currentRoom = generateRandomRoom();
+    player.currentRoom = generateRandomRoom();
     generateRandomEndRoom();
 
 
@@ -20,41 +20,41 @@ function setupGame() {
         setupGame();
     }
     
-    rooms[currentRoom].treasure = {};
-    rooms[currentRoom].items = {};
-    rooms[currentRoom].enemies = {};
+    Room.rooms[player.currentRoom].treasure = {};
+    Room.rooms[player.currentRoom].items = {};
+    Room.rooms[player.currentRoom].enemies = {};
 
-    console.log('startroom', currentRoom);
+    console.log('startroom', player.currentRoom);
     }
 
 function deleteRoom(id) {
-    let up = rooms[id].up
+    let up = Room.rooms[id].up
     if(up !== null) {
-        rooms[up].down = null;
-        rooms[up].availableDirections --;
+        Room.rooms[up].down = null;
+        Room.rooms[up].availableDirections --;
     }    
-    let right = rooms[id].right
+    let right = Room.rooms[id].right
     if(right !== null) {
-        rooms[right].left = null;
-        rooms[right].availableDirections --;
+        Room.rooms[right].left = null;
+        Room.rooms[right].availableDirections --;
     }    
-    let down = rooms[id].down
+    let down = Room.rooms[id].down
     if(down !== null) {
-        rooms[down].up = null;
-        rooms[down].availableDirections --;
+        Room.rooms[down].up = null;
+        Room.rooms[down].availableDirections --;
     }    
-    let left = rooms[id].left
+    let left = Room.rooms[id].left
     if(left !== null) {
-        rooms[left].right = null;
-        rooms[left].availableDirections --;
+        Room.rooms[left].right = null;
+        Room.rooms[left].availableDirections --;
     }
-    rooms[id] = null;
+    Room.rooms[id] = null;
 }
 
 let randomRoomID = null;
 function generateRandomRoom() {
     randomRoomID = Math.floor(Math.random() * (settings.gridSize ** 2));
-    if(rooms[randomRoomID] !== null) {
+    if(Room.rooms[randomRoomID] !== null) {
         return randomRoomID;
     } else {
         return generateRandomRoom();
@@ -63,7 +63,7 @@ function generateRandomRoom() {
 
 function generateRandomEndRoom() {
     let id = generateRandomRoom();
-    if(rooms[id].availableDirections !== 4 && id !== currentRoom) {
+    if(Room.rooms[id].availableDirections !== 4 && id !== player.currentRoom) {
         let endDoor = false;
         let directions = ['up', 'right', 'down', 'left'];
         let direction = null;
@@ -71,15 +71,15 @@ function generateRandomEndRoom() {
         while(endDoor === false) {
             index = Math.floor(Math.random() * (directions.length));
             direction = directions[index];
-            if(rooms[id][direction] === null) {
+            if(Room.rooms[id][direction] === null) {
                 endDoor = true;
-                rooms[id][direction] = 'end';
+                Room.rooms[id][direction] = 'end';
             } else {
                 directions.splice(index, 1);
             }
             
         }
-        rooms[id].endRoom = true;
+        Room.rooms[id].endRoom = true;
         console.log('end room:  ', id);
     } else {
         generateRandomEndRoom();
@@ -88,31 +88,31 @@ function generateRandomEndRoom() {
 
 function getUnvisitedNeighbors(id) {
     let unvisited = []
-    if(rooms[id].up !== null && rooms[id].up !== 'end'){
-        if(rooms[rooms[id].up].visited === false) {
-            unvisited.push(rooms[id].up);
+    if(Room.rooms[id].up !== null && Room.rooms[id].up !== 'end'){
+        if(Room.rooms[Room.rooms[id].up].visited === false) {
+            unvisited.push(Room.rooms[id].up);
         }
     }
-    if(rooms[id].right !== null && rooms[id].right !== 'end'){
-        if(rooms[rooms[id].right].visited === false) {
-            unvisited.push(rooms[id].right);
+    if(Room.rooms[id].right !== null && Room.rooms[id].right !== 'end'){
+        if(Room.rooms[Room.rooms[id].right].visited === false) {
+            unvisited.push(Room.rooms[id].right);
         }
     }
-    if(rooms[id].down !== null && rooms[id].down !== 'end'){
-        if(rooms[rooms[id].down].visited === false) {
-            unvisited.push(rooms[id].down);
+    if(Room.rooms[id].down !== null && Room.rooms[id].down !== 'end'){
+        if(Room.rooms[Room.rooms[id].down].visited === false) {
+            unvisited.push(Room.rooms[id].down);
         }
     }
-    if(rooms[id].left !== null && rooms[id].left !== 'end'){
-        if(rooms[rooms[id].left].visited === false) {
-            unvisited.push(rooms[id].left);
+    if(Room.rooms[id].left !== null && Room.rooms[id].left !== 'end'){
+        if(Room.rooms[Room.rooms[id].left].visited === false) {
+            unvisited.push(Room.rooms[id].left);
         }
     }
     return unvisited;
 }
 
 function mapInvalid() {
-    let activeRoom = currentRoom;
+    let activeRoom = player.currentRoom;
     let unvisitedNeighbors = null;
     let visitedStack = [];
     let routeFound = false;
@@ -120,8 +120,8 @@ function mapInvalid() {
     let availableNodes = settings.gridSize ** 2;
 
     while(routeFound !== true) {
-        rooms[activeRoom].visited = true
-        if(rooms[activeRoom].endRoom === true) {
+        Room.rooms[activeRoom].visited = true
+        if(Room.rooms[activeRoom].endRoom === true) {
             invalid = false;
         }
         unvisitedNeighbors = getUnvisitedNeighbors(activeRoom);
@@ -137,12 +137,12 @@ function mapInvalid() {
         }
     }
 
-    for (i = 0; i < rooms.length; i++) {
-        if(rooms[i] === null) {
+    for (i = 0; i < Room.rooms.length; i++) {
+        if(Room.rooms[i] === null) {
             availableNodes--;
-        } else if(rooms[i].visited === false) {
+        } else if(Room.rooms[i].visited === false) {
             availableNodes--;
-            rooms[i] = null;
+            Room.rooms[i] = null;
         }
     }
     if(availableNodes < settings.minimumNodes) {

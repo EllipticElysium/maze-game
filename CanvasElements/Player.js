@@ -1,4 +1,5 @@
 class Player extends MovableElement {
+    currentRoom = null;
     score = 0;
     time = 0;
     won = false;
@@ -11,54 +12,52 @@ class Player extends MovableElement {
         this.y = canvasBackground.height/2;
         this.radius = canvasBackground.height/40;
         this.speed = 5;
+        this.startTimer();
     }
 
-    move() {
-        super.move();
-        let roomChange = this.hitDoor();
-
-        if(roomChange !== false) {
-            currentRoom = rooms[currentRoom].changeRoom(roomChange.direction);
-            drawBackground()
-            this.x = roomChange.x;
-            this.y = roomChange.y;
-        }
+    startTimer() {
+        let start = Date.now();
+        setInterval(function() {
+            if(player.finished !== true) {
+                let time = Date.now() - start;
+                player.time = Math.floor(time / 1000)
+        
+                $('#time').text("Time:  " + player.time);
+            }
+        }, 100);
+    
     }
 
     hitDoor() {
         let returnVal = {};
         if(
-            rooms[currentRoom].up !== null &&
+            Room.rooms[player.currentRoom].up !== null &&
             this.y - this.radius + this.dy - ctxBackground.lineWidth < 0 &&
-            this.x > canvasPlayer.width*(5/12) &&
-            this.x < canvasPlayer.width*(7/12)
+            this.variableBetweenValues(this.x, doorMin, doorMax)
         ) {
             returnVal.direction = 'up';
             returnVal.x = this.x;
             returnVal.y = canvasPlayer.height - this.radius - ctxBackground.lineWidth;
         } else if(
-            rooms[currentRoom].right !== null &&
+            Room.rooms[player.currentRoom].right !== null &&
             this.x + this.radius + this.dx + ctxBackground.lineWidth > canvasPlayer.width &&
-            this.y > canvasPlayer.height*(5/12) &&
-            this.y < canvasPlayer.height*(7/12)
+            this.variableBetweenValues(this.y, doorMin, doorMax)
         ) {
             returnVal.direction = 'right';
             returnVal.x = this.radius + ctxBackground.lineWidth;
             returnVal.y = this.y;
         } else if(
-            rooms[currentRoom].down !== null &&
+            Room.rooms[player.currentRoom].down !== null &&
             this.y + this.radius + this.dy + ctxBackground.lineWidth > canvasPlayer.height &&
-            this.x > canvasPlayer.width*(5/12) &&
-            this.x < canvasPlayer.width*(7/12)
+            this.variableBetweenValues(this.x, doorMin, doorMax)
         ) {
             returnVal.direction = 'down';
             returnVal.x = this.x;
             returnVal.y = this.radius + ctxBackground.lineWidth;
         } else if(
-            rooms[currentRoom].left !== null &&
+            Room.rooms[player.currentRoom].left !== null &&
             this.x - this.radius + this.dx - ctxBackground.lineWidth < 0 &&
-            this.y > canvasPlayer.height*(5/12) &&
-            this.y < canvasPlayer.height*(7/12)
+            this.variableBetweenValues(this.y, doorMin, doorMax)
         ) {
             returnVal.direction = 'left';
             returnVal.x = canvasPlayer.width - this.radius - ctxBackground.lineWidth;
@@ -68,7 +67,7 @@ class Player extends MovableElement {
         }
 
         if(returnVal !== false) {
-            if(rooms[currentRoom][returnVal.direction] === 'end') {
+            if(Room.rooms[player.currentRoom][returnVal.direction] === 'end') {
                 this.playerWon();
                 returnVal = false;
             }

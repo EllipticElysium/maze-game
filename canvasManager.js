@@ -17,13 +17,17 @@ const ctxPlayer = canvasPlayer.getContext('2d');
 
 let canvasRect = canvasBackground.getBoundingClientRect();
 
+const doorMin = gameDimensions * (5/12);
+const doorMax = gameDimensions * (7/12);
+
+
 $('.background-image').width(gameDimensions/2);
 $('.background-image').height(gameDimensions/2);
 
 
 function drawBackground() {
     ctxBackground.clearRect(0,0, canvasBackground.width, canvasBackground.height);
-    let id = currentRoom;
+    let id = player.currentRoom;
 
     ctxBackground.beginPath();
     ctxBackground.moveTo(0, 0);
@@ -42,7 +46,7 @@ function drawBackground() {
     ctxBackground.lineWidth = 20;
     ctxBackground.moveTo(0, 0);
     ctxBackground.lineTo(canvasBackground.width*(5/12), 0);
-    if(rooms[id].up) {
+    if(Room.rooms[id].up) {
         ctxBackground.moveTo(canvasBackground.width*(7/12), 0);
     } else {
         ctxBackground.lineTo(canvasBackground.width*(7/12), 0);
@@ -51,7 +55,7 @@ function drawBackground() {
     ctxBackground.lineTo(canvasBackground.width, 0);
 
     ctxBackground.lineTo(canvasBackground.width, canvasBackground.height*(5/12));
-    if(rooms[id].right) {
+    if(Room.rooms[id].right) {
         ctxBackground.moveTo(canvasBackground.width, canvasBackground.height*(7/12));
     } else {
         ctxBackground.lineTo(canvasBackground.width, canvasBackground.height*(7/12));
@@ -59,7 +63,7 @@ function drawBackground() {
     ctxBackground.lineTo(canvasBackground.width, canvasBackground.height);
 
     ctxBackground.lineTo(canvasBackground.width*(7/12), canvasBackground.height);
-    if(rooms[id].down) {
+    if(Room.rooms[id].down) {
         ctxBackground.moveTo(canvasBackground.width*(5/12), canvasBackground.height);
     } else {
         ctxBackground.lineTo(canvasBackground.width*(5/12), canvasBackground.height);
@@ -67,7 +71,7 @@ function drawBackground() {
     ctxBackground.lineTo(0, canvasBackground.height);
 
     ctxBackground.lineTo(0, canvasBackground.height*(7/12));
-    if(rooms[id].left) {
+    if(Room.rooms[id].left) {
         ctxBackground.moveTo(0, canvasBackground.height*(5/12));
     } else {
         ctxBackground.lineTo(0, canvasBackground.height*(5/12));
@@ -80,8 +84,8 @@ function drawBackground() {
 function drawItems() {
     ctxItems.clearRect(0, 0, canvasItems.width, canvasItems.height);
 
-    Object.keys(rooms[currentRoom].treasure).forEach(function(index) {
-        let treasure = rooms[currentRoom].treasure[index];
+    Object.keys(Room.rooms[player.currentRoom].treasure).forEach(function(index) {
+        let treasure = Room.rooms[player.currentRoom].treasure[index];
         treasure.update();
         ctxItems.beginPath();
         ctxItems.arc(treasure.x, treasure.y, treasure.radius, 0, Math.PI * 2);
@@ -89,8 +93,8 @@ function drawItems() {
         ctxItems.fill();
     })
 
-    Object.keys(rooms[currentRoom].enemies).forEach(function(index) {
-        let enemy = rooms[currentRoom].enemies[index];
+    Object.keys(Room.rooms[player.currentRoom].enemies).forEach(function(index) {
+        let enemy = Room.rooms[player.currentRoom].enemies[index];
         enemy.update();
         ctxItems.beginPath();
         ctxItems.arc(enemy.x, enemy.y, enemy.radius, 0, Math.PI * 2);
