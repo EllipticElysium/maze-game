@@ -61,7 +61,6 @@ function changeRoom(id, direction) {
 function playGame() {
     setupGame();
     background.draw();
-    // drawBackground();
     // updateItems();
     // updatePlayer();
 }

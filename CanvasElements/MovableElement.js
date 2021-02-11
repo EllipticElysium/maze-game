@@ -40,13 +40,13 @@ class MovableElement extends CanvasElement {
     }
 
     getWallHit() {
-        if(this.x + this.radius + this.dx > canvasBackground.width - ctxBackground.lineWidth) {
+        if(this.x + this.radius + this.dx > background.canvas.width - background.ctx.lineWidth) {
             return 'right';
-        } else if(this.x - this.radius + this.dx < 0 + ctxBackground.lineWidth) {
+        } else if(this.x - this.radius + this.dx < 0 + background.ctx.lineWidth) {
             return 'left';
-        } else if(this.y + this.radius + this.dy > canvasBackground.height - ctxBackground.lineWidth) {
+        } else if(this.y + this.radius + this.dy > background.canvas.height - background.ctx.lineWidth) {
             return 'down';
-        } else if(this.y - this.radius + this.dy < 0 + ctxBackground.lineWidth) {
+        } else if(this.y - this.radius + this.dy < 0 + background.ctx.lineWidth) {
             return 'up';
         } else {
             return false;

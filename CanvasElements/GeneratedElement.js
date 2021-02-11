@@ -7,8 +7,8 @@ class GeneratedElement extends MovableElement{
     }
 
     setRandomPosition() {
-        let width = canvasBackground.width;
-        let height = canvasBackground.height;
+        let width = background.canvas.width;
+        let height = background.canvas.height;
         this.x = Math.floor(Math.random() * (width * 0.6)) + (width * 0.2);
         this.y = Math.floor(Math.random() * (height * 0.6)) + (width * 0.2);
     }
