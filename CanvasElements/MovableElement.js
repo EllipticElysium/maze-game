@@ -10,6 +10,8 @@ class MovableElement extends CanvasElement {
         if(this.notHitWall()) {
             this.x += this.dx;
             this.y += this.dy;
+        } else if(this instanceof Projectile){
+            delete player.projectiles[this.id];
         }
     }
 
