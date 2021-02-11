@@ -1,8 +1,7 @@
-const settings = {
-    gridSize: 30,
-    removed: 0.5,
-    minimumNodes: 100
-};
+let settings = {};
+
+const configURL = './configuration.txt'
+
 
 let background = new Background();
 let player = new Player();
@@ -14,15 +13,29 @@ function changeRoom(id, direction) {
     player.room = newRoom;
 }
 
-function playGame() {
-    setupGame();
-    background.draw();
-    foreground.update();
+function configIsValid(config) {
+    let inputsettings = JSON.parse(config);
+    if(
+        inputsettings.minimumNodes < 
+        (inputsettings.gridSize ** 2 * inputsettings.removed)
+    ) {
+        settings = inputsettings;
+        return true;
+    } else {
+        return false;
+    }
 }
 
+function playGame(config) {
+    if(configIsValid(config)) {
+        setupGame();
+        background.draw();
+        foreground.update();
+    } else {
+        console.log('invalid configuration')
+    }
+}
 
-playGame();
-
-
-
-
+fetch(configURL)
+   .then( r => r.text() )
+   .then( text => playGame(text));
