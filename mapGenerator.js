@@ -11,7 +11,7 @@ function setupGame() {
         }
     }
 
-    currentRoom = generateRandomRoom();
+    player.currentRoom = generateRandomRoom();
     generateRandomEndRoom();
 
 
@@ -20,11 +20,11 @@ function setupGame() {
         setupGame();
     }
     
-    Room.rooms[currentRoom].treasure = {};
-    Room.rooms[currentRoom].items = {};
-    Room.rooms[currentRoom].enemies = {};
+    Room.rooms[player.currentRoom].treasure = {};
+    Room.rooms[player.currentRoom].items = {};
+    Room.rooms[player.currentRoom].enemies = {};
 
-    console.log('startroom', currentRoom);
+    console.log('startroom', player.currentRoom);
     }
 
 function deleteRoom(id) {
@@ -63,7 +63,7 @@ function generateRandomRoom() {
 
 function generateRandomEndRoom() {
     let id = generateRandomRoom();
-    if(Room.rooms[id].availableDirections !== 4 && id !== currentRoom) {
+    if(Room.rooms[id].availableDirections !== 4 && id !== player.currentRoom) {
         let endDoor = false;
         let directions = ['up', 'right', 'down', 'left'];
         let direction = null;
@@ -112,7 +112,7 @@ function getUnvisitedNeighbors(id) {
 }
 
 function mapInvalid() {
-    let activeRoom = currentRoom;
+    let activeRoom = player.currentRoom;
     let unvisitedNeighbors = null;
     let visitedStack = [];
     let routeFound = false;

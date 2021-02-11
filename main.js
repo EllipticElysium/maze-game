@@ -6,19 +6,18 @@ const settings = {
 
 let gameFinished = false;
 
-let currentRoom = null;
 let player = new Player();
 
 function changeRoom(id, direction) {
     let newRoom = Room.rooms[id].changeRoom(direction);
-    currentRoom = newRoom;
+    player.currentRoom = newRoom;
 }
 
 function nextTurn(action) {
     if(action.type === 'changeroom') {
-        changeRoom(currentRoom, action.direction);
+        changeRoom(player.currentRoom, action.direction);
     }
-    displayRoom(currentRoom);
+    displayRoom(player.currentRoom);
 }
 
 function startTimer() {

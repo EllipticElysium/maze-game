@@ -27,7 +27,7 @@ $('.background-image').height(gameDimensions/2);
 
 function drawBackground() {
     ctxBackground.clearRect(0,0, canvasBackground.width, canvasBackground.height);
-    let id = currentRoom;
+    let id = player.currentRoom;
 
     ctxBackground.beginPath();
     ctxBackground.moveTo(0, 0);
@@ -84,8 +84,8 @@ function drawBackground() {
 function drawItems() {
     ctxItems.clearRect(0, 0, canvasItems.width, canvasItems.height);
 
-    Object.keys(Room.rooms[currentRoom].treasure).forEach(function(index) {
-        let treasure = Room.rooms[currentRoom].treasure[index];
+    Object.keys(Room.rooms[player.currentRoom].treasure).forEach(function(index) {
+        let treasure = Room.rooms[player.currentRoom].treasure[index];
         treasure.update();
         ctxItems.beginPath();
         ctxItems.arc(treasure.x, treasure.y, treasure.radius, 0, Math.PI * 2);
@@ -93,8 +93,8 @@ function drawItems() {
         ctxItems.fill();
     })
 
-    Object.keys(Room.rooms[currentRoom].enemies).forEach(function(index) {
-        let enemy = Room.rooms[currentRoom].enemies[index];
+    Object.keys(Room.rooms[player.currentRoom].enemies).forEach(function(index) {
+        let enemy = Room.rooms[player.currentRoom].enemies[index];
         enemy.update();
         ctxItems.beginPath();
         ctxItems.arc(enemy.x, enemy.y, enemy.radius, 0, Math.PI * 2);
