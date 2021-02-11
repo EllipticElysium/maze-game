@@ -5,3 +5,7 @@ class CanvasElement {
     radius = 0;
     overlay = false;
 }
+
+if (typeof module !== 'undefined') {
+    module.exports = CanvasElement;
+}

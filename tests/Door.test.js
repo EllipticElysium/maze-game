@@ -1,4 +1,3 @@
-const { test, expect } = require('@jest/globals');
 const Door = require('../Door');
 
 test('A door is initially disabled', () => {

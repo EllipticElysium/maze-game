@@ -8,3 +8,7 @@ class Marker extends CanvasElement {
         this.radius = background.canvas.height/15;
     }
 }
+
+if (typeof module !== 'undefined') {
+    module.exports = Marker;
+}

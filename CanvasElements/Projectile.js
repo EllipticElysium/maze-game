@@ -22,3 +22,7 @@ class Projectile extends GeneratedElement {
         }
     }
 }
+
+if (typeof module !== 'undefined') {
+    module.exports = Projectile;
+}

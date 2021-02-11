@@ -8,11 +8,6 @@ let player = new Player();
 let foreground = new Foreground();
 
 
-function changeRoom(id, direction) {
-    let newRoom = Room.rooms[id].changeRoom(direction);
-    player.room = newRoom;
-}
-
 function configIsValid(config) {
     let inputsettings = JSON.parse(config);
     if(
@@ -39,3 +34,4 @@ function playGame(config) {
 fetch(configURL)
    .then( r => r.text() )
    .then( text => playGame(text));
+

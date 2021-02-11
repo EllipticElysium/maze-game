@@ -66,3 +66,7 @@ window.onresize = function() {
     foreground.update();
     player.resetPosition();
 };
+
+if (typeof module !== 'undefined') {
+    module.exports = {keyDown, keyUp, click};
+}

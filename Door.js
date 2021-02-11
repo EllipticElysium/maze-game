@@ -62,4 +62,6 @@ class Door{
 
 }
 
-module.exports = Door;
+if (typeof module !== 'undefined') {
+    module.exports = Door;
+}

@@ -96,3 +96,7 @@ class Player extends MovableElement {
         this.y = background.canvas.height/2;
     }
 }
+
+if (typeof module !== 'undefined') {
+    module.exports = Player;
+}

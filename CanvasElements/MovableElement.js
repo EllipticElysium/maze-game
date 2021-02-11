@@ -62,3 +62,7 @@ class MovableElement extends CanvasElement {
 
     }
 }
+
+if (typeof module !== 'undefined') {
+    module.exports = MovableElement;
+}

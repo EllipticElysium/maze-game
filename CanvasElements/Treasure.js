@@ -16,3 +16,7 @@ class Treasure extends GeneratedElement {
         }
     }
 }
+
+if (typeof module !== 'undefined') {
+    module.exports = Treasure;
+}

@@ -53,3 +53,7 @@ class Foreground extends Canvas {
         })
     }
 }
+
+if (typeof module !== 'undefined') {
+    module.exports = Foreground;
+}

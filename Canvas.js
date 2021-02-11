@@ -15,3 +15,7 @@ class Canvas {
         this.ctx.clearRect(0,0, this.canvas.width, this.canvas.height);
     }
 }
+
+if (typeof module !== 'undefined') {
+    module.exports = Canvas;
+}

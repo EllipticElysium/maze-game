@@ -30,3 +30,7 @@ class GeneratedElement extends MovableElement{
         }
     }
 }
+
+if (typeof module !== 'undefined') {
+    module.exports = GeneratedElement;
+}

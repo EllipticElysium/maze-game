@@ -62,3 +62,7 @@ class Room extends CanvasElement {
         background.draw();
     }
 }
+
+if (typeof module !== 'undefined') {
+    module.exports = Room;
+}

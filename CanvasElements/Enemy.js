@@ -60,3 +60,7 @@ class Enemy extends GeneratedElement {
         }
     }
 }
+
+if (typeof module !== 'undefined') {
+    module.exports = Enemy;
+}

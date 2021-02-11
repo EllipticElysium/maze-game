@@ -151,3 +151,14 @@ function mapInvalid() {
     console.log('available nodes:   ', availableNodes);
     return invalid;
 }
+
+if (typeof module !== 'undefined') {
+    module.exports = {
+        setupGame,
+        deleteRoom,
+        generateRandomRoom,
+        generateRandomEndRoom,
+        getUnvisitedNeighbors,
+        mapInvalid
+    };
+}

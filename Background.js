@@ -78,3 +78,7 @@ class Background extends Canvas {
         })
     }
 }
+
+if (typeof module !== 'undefined') {
+    module.exports = Background;
+}
