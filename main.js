@@ -13,32 +13,11 @@ function changeRoom(id, direction) {
     player.currentRoom = newRoom;
 }
 
-function nextTurn(action) {
-    if(action.type === 'changeroom') {
-        changeRoom(player.currentRoom, action.direction);
-    }
-    displayRoom(player.currentRoom);
-}
-
-function startTimer() {
-    let start = Date.now();
-    setInterval(function() {
-        if(player.finished !== true) {
-            let time = Date.now() - start;
-            player.time = Math.floor(time / 1000)
-    
-            $('#time').text("Time:  " + player.time);
-        }
-    }, 100);
-
-}
-
 function playGame() {
     setupGame();
     drawBackground();
     updateItems();
     updatePlayer();
-    startTimer();
 }
 
 

@@ -12,6 +12,20 @@ class Player extends MovableElement {
         this.y = canvasBackground.height/2;
         this.radius = canvasBackground.height/40;
         this.speed = 5;
+        this.startTimer();
+    }
+
+    startTimer() {
+        let start = Date.now();
+        setInterval(function() {
+            if(player.finished !== true) {
+                let time = Date.now() - start;
+                player.time = Math.floor(time / 1000)
+        
+                $('#time').text("Time:  " + player.time);
+            }
+        }, 100);
+    
     }
 
     hitDoor() {
