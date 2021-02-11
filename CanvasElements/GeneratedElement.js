@@ -1,5 +1,6 @@
-class GeneratedElement extends CanvasElement{
-    
+class GeneratedElement extends MovableElement{
+    used = false;
+
     constructor() {
         super();
         this.setRandomPosition();
@@ -8,7 +9,7 @@ class GeneratedElement extends CanvasElement{
     setRandomPosition() {
         let width = canvasBackground.width;
         let height = canvasBackground.height;
-        this.x = Math.floor(Math.random() * (width - (this.radius  + ctxBackground.lineWidth) * 2)) + this.radius + ctxBackground.lineWidth;
-        this.y = Math.floor(Math.random() * (height - (this.radius  + ctxBackground.lineWidth) * 2)) + this.radius + ctxBackground.lineWidth;
+        this.x = Math.floor(Math.random() * (width * 0.6)) + (width * 0.2);
+        this.y = Math.floor(Math.random() * (height * 0.6)) + (width * 0.2);
     }
 }

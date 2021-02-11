@@ -3,4 +3,5 @@ class CanvasElement {
     x = 0;
     y = 0;
     radius = 0;
+    overlay = false;
 }
