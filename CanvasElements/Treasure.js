@@ -1,0 +1,3 @@
+class Treasure extends GeneratedElement {
+
+}
