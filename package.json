@@ -1,0 +1,23 @@
+{
+  "name": "maze-game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ElipticNight/maze-game.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ElipticNight/maze-game/issues"
+  },
+  "homepage": "https://github.com/ElipticNight/maze-game#readme",
+  "devDependencies": {
+    "jest": "^26.6.3"
+  }
+}
