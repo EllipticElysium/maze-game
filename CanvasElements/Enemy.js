@@ -14,6 +14,8 @@ class Enemy extends GeneratedElement {
         this.level = Math.floor(Math.random() * (5)) +1;
         this.radius = this.levels[this.level][0];
         this.speed = this.levels[this.level][1];
+        this.dx = 1;
+        this.dy = 1;
         this.setRandomDirection();
     }
 
@@ -63,11 +65,11 @@ class Enemy extends GeneratedElement {
     }
 
     projectileHit() {
-        delete player.projectiles[Projectile.index];
+        delete player.projectiles[Projectile.id];
         if(this.level > 1) {
             this.level -= 1;
         } else {
-            delete rooms[currentRoom].enemies[this.index];
+            delete rooms[currentRoom].enemies[this.id];
         }
     }
 }
