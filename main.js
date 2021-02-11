@@ -6,12 +6,11 @@ const settings = {
 
 let gameFinished = false;
 
-let rooms = [];
 let currentRoom = null;
 let player = new Player();
 
 function changeRoom(id, direction) {
-    let newRoom = rooms[id].changeRoom(direction);
+    let newRoom = Room.rooms[id].changeRoom(direction);
     currentRoom = newRoom;
 }
 

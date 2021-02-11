@@ -1,4 +1,5 @@
 class Room extends CanvasElement {
+    static rooms = [];
     up = '';
     right = '';
     down = '';

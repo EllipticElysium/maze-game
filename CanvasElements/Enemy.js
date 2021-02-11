@@ -56,7 +56,7 @@ class Enemy extends GeneratedElement {
         if(this.level > 1) {
             this.level -= 1;
         } else {
-            delete rooms[currentRoom].enemies[this.id];
+            delete Room.rooms[currentRoom].enemies[this.id];
         }
     }
 }
