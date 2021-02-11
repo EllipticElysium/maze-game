@@ -83,7 +83,7 @@ class Player extends MovableElement {
     }
 
     fireProjectile(x, y) {
-        this.projectiles[this.projectileCounter] = new Projectile(x, y, this.projectileCounter);
+        this.projectiles[this.projectileCounter] = new Projectile(this.projectileCounter, x, y);
         this.projectileCounter ++;
     }
 

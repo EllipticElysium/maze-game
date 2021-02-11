@@ -3,13 +3,16 @@ class Projectile extends GeneratedElement {
     speed = 5;
 
     constructor(index, x, y) {
+        super();
         this.id = index;
         this.x = player.x;
         this.y = player.y;
-        this.setDirection();
+        this.radius = canvasBackground.height/100;
+        
+        this.setDirection(x, y);
     }
 
-    setDirection() {
+    setDirection(x, y) {
         this.angle = Math.atan((y-this.y) / (x-this.x));
         this.dx = this.speed * Math.cos(this.angle);
         this.dy = this.speed * Math.sin(this.angle);
