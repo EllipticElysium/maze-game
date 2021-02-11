@@ -10,6 +10,7 @@ class Player extends MovableElement {
         this.x = canvasBackground.width/2;
         this.y = canvasBackground.height/2;
         this.radius = canvasBackground.height/40;
+        this.speed = 5;
     }
 
     move() {

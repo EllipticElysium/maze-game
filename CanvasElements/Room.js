@@ -3,28 +3,32 @@ class Room extends CanvasElement {
     right = '';
     down = '';
     left = '';
+    endRoom = false;
+    visited = false;
+    availableDirections = 4;
     treasure = {};
     items = {};
     enemies = {};
 
     constructor(index, gridSize) {
+        super();
         this.id = index;
-        this.up = index - gridSize;
-        this.right = index + 1;
-        this.down = index + gridSize;
-        this.left = index - 1;
+        this.up = this.id - gridSize;
+        this.right = this.id + 1;
+        this.down = this.id + gridSize;
+        this.left = this.id - 1;
 
-        if(id < gridSize) {
+        if(this.id < gridSize) {
             this.up = null;
             this.availableDirections --;
-        } else if (id >= ((gridSize ** 2) - gridSize)) {
+        } else if (this.id >= ((gridSize ** 2) - gridSize)) {
             this.availableDirections --;
             this.down = null;
         }
-        if((id % gridSize) === 0) {
+        if((this.id % gridSize) === 0) {
             this.availableDirections --;
             this.left = null;
-        } else if((id % gridSize) === (gridSize -1)) {
+        } else if((this.id % gridSize) === (gridSize -1)) {
             this.availableDirections --;
             this.right = null;
         }

@@ -1,9 +1,10 @@
 function setupGame() {
     rooms = [];
-    for (i = 0; i < settings.gridSize ** 2; i++) {
-        rooms.push(new room(i, settings.gridSize));
-    }
 
+    for (i = 0; i < settings.gridSize ** 2; i++) {
+        rooms.push(new Room(i, settings.gridSize));
+    }
+    
     for (i = 0; i < rooms.length; i++) {
         if(Math.random() <= settings.removed) {
             deleteRoom(i);
@@ -13,15 +14,15 @@ function setupGame() {
     currentRoom = generateRandomRoom();
     generateRandomEndRoom();
 
+
     if(mapInvalid()) {
         console.log('rebuilding map');
         setupGame();
     }
     
-    rooms[currentRoom].contents = {
-        treasure: [],
-        enemies: []
-    };
+    rooms[currentRoom].treasure = {};
+    rooms[currentRoom].items = {};
+    rooms[currentRoom].enemies = {};
 
     console.log('startroom', currentRoom);
     }
@@ -76,6 +77,7 @@ function generateRandomEndRoom() {
             } else {
                 directions.splice(index, 1);
             }
+            
         }
         rooms[id].endRoom = true;
         console.log('end room:  ', id);
