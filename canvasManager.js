@@ -1,85 +1,29 @@
-const canvasBackground = document.getElementById('canvas-background');
-const canvasItems = document.getElementById('canvas-items');
-const canvasPlayer = document.getElementById('canvas-player');
+// const canvasBackground = document.getElementById('canvas-background');
+// const canvasItems = document.getElementById('canvas-items');
+// const canvasPlayer = document.getElementById('canvas-player');
 
-let gameDimensions = window.innerHeight * 0.80;
+// let gameDimensions = window.innerHeight * 0.80;
 
-canvasBackground.width = gameDimensions;
-canvasBackground.height = gameDimensions;
-canvasItems.width = gameDimensions;
-canvasItems.height = gameDimensions;
-canvasPlayer.width = gameDimensions;
-canvasPlayer.height = gameDimensions;
+// canvasBackground.width = gameDimensions;
+// canvasBackground.height = gameDimensions;
+// canvasItems.width = gameDimensions;
+// canvasItems.height = gameDimensions;
+// canvasPlayer.width = gameDimensions;
+// canvasPlayer.height = gameDimensions;
 
-const ctxItems = canvasItems.getContext('2d');
-const ctxBackground = canvasBackground.getContext('2d');
-const ctxPlayer = canvasPlayer.getContext('2d');
+// const ctxItems = canvasItems.getContext('2d');
+// const ctxBackground = canvasBackground.getContext('2d');
+// const ctxPlayer = canvasPlayer.getContext('2d');
 
-let canvasRect = canvasBackground.getBoundingClientRect();
+// let canvasRect = canvasBackground.getBoundingClientRect();
 
-const doorMin = gameDimensions * (5/12);
-const doorMax = gameDimensions * (7/12);
+// const doorMin = gameDimensions * (5/12);
+// const doorMax = gameDimensions * (7/12);
 
 
 $('.background-image').width(gameDimensions/2);
 $('.background-image').height(gameDimensions/2);
 
-
-function drawBackground() {
-    ctxBackground.clearRect(0,0, canvasBackground.width, canvasBackground.height);
-    let id = player.currentRoom;
-
-    ctxBackground.beginPath();
-    ctxBackground.moveTo(0, 0);
-    ctxBackground.strokeStyle = 'green';
-    ctxBackground.lineWidth = 20;
-    ctxBackground.lineTo(canvasBackground.width, 0);
-    ctxBackground.lineTo(canvasBackground.width, canvasBackground.height);
-    ctxBackground.lineTo(0, canvasBackground.height);
-    ctxBackground.lineTo(0, 0);
-    ctxBackground.stroke();
-
-
-
-    ctxBackground.beginPath();
-    ctxBackground.strokeStyle = 'black';
-    ctxBackground.lineWidth = 20;
-    ctxBackground.moveTo(0, 0);
-    ctxBackground.lineTo(canvasBackground.width*(5/12), 0);
-    if(Room.rooms[id].up) {
-        ctxBackground.moveTo(canvasBackground.width*(7/12), 0);
-    } else {
-        ctxBackground.lineTo(canvasBackground.width*(7/12), 0);
-    }
-    
-    ctxBackground.lineTo(canvasBackground.width, 0);
-
-    ctxBackground.lineTo(canvasBackground.width, canvasBackground.height*(5/12));
-    if(Room.rooms[id].right) {
-        ctxBackground.moveTo(canvasBackground.width, canvasBackground.height*(7/12));
-    } else {
-        ctxBackground.lineTo(canvasBackground.width, canvasBackground.height*(7/12));
-    }
-    ctxBackground.lineTo(canvasBackground.width, canvasBackground.height);
-
-    ctxBackground.lineTo(canvasBackground.width*(7/12), canvasBackground.height);
-    if(Room.rooms[id].down) {
-        ctxBackground.moveTo(canvasBackground.width*(5/12), canvasBackground.height);
-    } else {
-        ctxBackground.lineTo(canvasBackground.width*(5/12), canvasBackground.height);
-    }
-    ctxBackground.lineTo(0, canvasBackground.height);
-
-    ctxBackground.lineTo(0, canvasBackground.height*(7/12));
-    if(Room.rooms[id].left) {
-        ctxBackground.moveTo(0, canvasBackground.height*(5/12));
-    } else {
-        ctxBackground.lineTo(0, canvasBackground.height*(5/12));
-    }
-    ctxBackground.lineTo(0, 0);
-
-    ctxBackground.stroke();
-}
 
 function drawItems() {
     ctxItems.clearRect(0, 0, canvasItems.width, canvasItems.height);
@@ -141,48 +85,6 @@ function updateItems() {
     }
 }
 
-function keyDown(e) {
-    if(e.key === 'ArrowUp' || e.key === 'Up') {
-        player.dy = - player.speed;
-    } else if(e.key === 'ArrowRight' || e.key === 'Right') {
-        player.dx = player.speed;
-    } else if(e.key === 'ArrowDown' || e.key === 'Down') {
-        player.dy = player.speed;
-    } else if(e.key === 'ArrowLeft' || e.key === 'Left') {
-        player.dx = -player.speed;
-    }
-}
-
-function keyUp(e) {
-    if(
-        e.key === 'ArrowUp' || e.key === 'UP' ||
-        e.key === 'ArrowRight' || e.key === 'Right' ||
-        e.key === 'ArrowDown' || e.key === 'Down' ||
-        e.key === 'ArrowLeft' || e.key === 'Left'
-    ) {
-        player.dx = 0;
-        player.dy = 0;
-    }
-}
-
-function click(e) {
-    if(e.button === 0) {
-        if(
-            e.clientY >= canvasRect.top &&
-            e.clientY <= canvasRect.bottom &&
-            e.clientX >= canvasRect.left &&
-            e.clientX <= canvasRect.right
-        ) {
-            let x = e.clientX - canvasRect.x;
-            let y = e.clientY - canvasRect.y;
-            player.fireProjectile(x, y);
-        }
-    }
-}
-
-document.addEventListener('keydown', keyDown);
-document.addEventListener('keyup', keyUp);
-document.addEventListener('mousedown', click);
 
 //detect space bar
 //paints a red x on the floor to mark that the player has visited there before
