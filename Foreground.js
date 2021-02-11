@@ -6,8 +6,6 @@ class Foreground extends Canvas {
         this.ctx = this.canvas.getContext('2d');
         this.canvas.width = this.dimensions;
         this.canvas.height = this.dimensions;
-        // this.doorMin = this.dimensions * (5/12);
-        // this.doorMax = this.dimensions * (7/12);
     }
 
     update() {
