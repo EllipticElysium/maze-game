@@ -180,3 +180,14 @@ document.addEventListener('mousedown', click);
 
 //detect space bar
 //paints a red x on the floor to mark that the player has visited there before
+
+//have a class for background and foreground canvas
+//no need for a canvas manager
+
+//make a superclass that all foreground objects derive from
+//split each class into it's own file
+
+//create a better hit detection algorithm that can take any two objects and return true if they collide false if not
+//must only return true once per collision, no pass through.
+//can test circle x circle and circle x line as my two test cases.
+
