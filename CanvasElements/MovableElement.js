@@ -11,19 +11,31 @@ class MovableElement extends CanvasElement {
     move() {
         this.wallHit = this.getWallHit();
         if(this.wallHit === false) {
-            this.x += this.dx;
-            this.y += this.dy;
+            if(this instanceof Enemy) {
+                this.x += this.speed * this.dx;
+                this.y += this.speed * this.dy; 
+            } else {
+                this.x += this.dx;
+                this.y += this.dy;
+            }
         } else if(this instanceof Projectile){
             delete player.projectiles[this.id];
         } else if(this instanceof Player) {    
             let roomChange = this.hitDoor();
-
             if(roomChange !== false) {
                 currentRoom = rooms[currentRoom].changeRoom(roomChange.direction);
                 drawBackground()
                 this.x = roomChange.x;
                 this.y = roomChange.y;
             }        
+        } else if(this instanceof Enemy) {
+            if(this.wallHit === 'up' || this.wallHit === 'down') {
+                this.dy *= -1;
+            } else if(this.wallHit === 'right' || this.wallHit === 'left') {
+                this.dx *= -1;
+            }
+            this.x += this.speed * this.dx;
+            this.y += this.speed * this.dy; 
         }
     }
 

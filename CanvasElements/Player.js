@@ -42,7 +42,7 @@ class Player extends MovableElement {
         } else if(
             rooms[currentRoom].left !== null &&
             this.x - this.radius + this.dx - ctxBackground.lineWidth < 0 &&
-            tthis.variableBetweenValues(this.y, doorMin, doorMax)
+            this.variableBetweenValues(this.y, doorMin, doorMax)
         ) {
             returnVal.direction = 'left';
             returnVal.x = canvasPlayer.width - this.radius - ctxBackground.lineWidth;
