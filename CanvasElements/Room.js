@@ -47,7 +47,7 @@ class Room extends CanvasElement {
     generateEnemies() {
         if(Math.random() <= 0.6) {
             let index = Object.keys(this.treasure).length;
-            this.enemies[index] = new Treasure(index)
+            this.enemies[index] = new Enemy(index)
         }    
     }
 

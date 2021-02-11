@@ -5,6 +5,7 @@ class Treasure extends GeneratedElement {
         super();
         this.id = index;
         this.value = Math.floor(Math.random() * (9)) * 100 + 100;
+        this.radius = canvasBackground.height/20;
     }
 
     detectHit() {

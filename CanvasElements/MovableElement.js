@@ -7,7 +7,7 @@ class MovableElement extends CanvasElement {
     }
 
     move() {
-        if(this.notHitWall()) {
+        if(this.doesNotHitWall()) {
             this.x += this.dx;
             this.y += this.dy;
         } else if(this instanceof Projectile){
@@ -15,7 +15,7 @@ class MovableElement extends CanvasElement {
         }
     }
 
-    notHitWall() {
+    doesNotHitWall() {
         if(
             this.x + this.radius + this.dx > canvasBackground.width - ctxBackground.lineWidth ||
             this.x - this.radius + this.dx < 0 + ctxBackground.lineWidth  ||

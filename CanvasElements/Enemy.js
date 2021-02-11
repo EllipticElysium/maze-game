@@ -12,6 +12,8 @@ class Enemy extends GeneratedElement {
         super();
         this.id = index;
         this.level = Math.floor(Math.random() * (5)) +1;
+        this.radius = this.levels[this.level][0];
+        this.speed = this.levels[this.level][1];
         this.setRandomDirection();
     }
 
