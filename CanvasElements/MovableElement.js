@@ -24,7 +24,7 @@ class MovableElement extends CanvasElement {
             let roomChange = this.hitDoor();
             if(roomChange !== false) {
                 player.currentRoom = Room.rooms[player.currentRoom].changeRoom(roomChange.direction);
-                drawBackground()
+                background.draw();
                 this.x = roomChange.x;
                 this.y = roomChange.y;
             }        
@@ -40,13 +40,13 @@ class MovableElement extends CanvasElement {
     }
 
     getWallHit() {
-        if(this.x + this.radius + this.dx > canvasBackground.width - ctxBackground.lineWidth) {
+        if(this.x + this.radius + this.dx > background.canvas.width - background.ctx.lineWidth) {
             return 'right';
-        } else if(this.x - this.radius + this.dx < 0 + ctxBackground.lineWidth) {
+        } else if(this.x - this.radius + this.dx < 0 + background.ctx.lineWidth) {
             return 'left';
-        } else if(this.y + this.radius + this.dy > canvasBackground.height - ctxBackground.lineWidth) {
+        } else if(this.y + this.radius + this.dy > background.canvas.height - background.ctx.lineWidth) {
             return 'down';
-        } else if(this.y - this.radius + this.dy < 0 + ctxBackground.lineWidth) {
+        } else if(this.y - this.radius + this.dy < 0 + background.ctx.lineWidth) {
             return 'up';
         } else {
             return false;

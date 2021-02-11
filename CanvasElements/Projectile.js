@@ -7,7 +7,7 @@ class Projectile extends GeneratedElement {
         this.id = index;
         this.x = player.x;
         this.y = player.y;
-        this.radius = canvasBackground.height/100;
+        this.radius = background.canvas.height/100;
         
         this.setDirection(x, y);
     }
