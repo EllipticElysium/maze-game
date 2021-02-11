@@ -33,7 +33,7 @@ class Player extends MovableElement {
         if(
             Room.rooms[player.currentRoom].up !== null &&
             this.y - this.radius + this.dy - background.ctx.lineWidth < 0 &&
-            this.variableBetweenValues(this.x, doorMin, doorMax)
+            this.variableBetweenValues(this.x, background.doorMin, background.doorMax)
         ) {
             returnVal.direction = 'up';
             returnVal.x = this.x;
@@ -41,7 +41,7 @@ class Player extends MovableElement {
         } else if(
             Room.rooms[player.currentRoom].right !== null &&
             this.x + this.radius + this.dx + background.ctx.lineWidth > background.canvas.width &&
-            this.variableBetweenValues(this.y, doorMin, doorMax)
+            this.variableBetweenValues(this.y, background.doorMin, background.doorMax)
         ) {
             returnVal.direction = 'right';
             returnVal.x = this.radius + background.ctx.lineWidth;
@@ -49,7 +49,7 @@ class Player extends MovableElement {
         } else if(
             Room.rooms[player.currentRoom].down !== null &&
             this.y + this.radius + this.dy + background.ctx.lineWidth > background.canvas.height &&
-            this.variableBetweenValues(this.x, doorMin, doorMax)
+            this.variableBetweenValues(this.x, background.doorMin, background.doorMax)
         ) {
             returnVal.direction = 'down';
             returnVal.x = this.x;
@@ -57,7 +57,7 @@ class Player extends MovableElement {
         } else if(
             Room.rooms[player.currentRoom].left !== null &&
             this.x - this.radius + this.dx - background.ctx.lineWidth < 0 &&
-            this.variableBetweenValues(this.y, doorMin, doorMax)
+            this.variableBetweenValues(this.y, background.doorMin, background.doorMax)
         ) {
             returnVal.direction = 'left';
             returnVal.x = background.canvas.width - this.radius - background.ctx.lineWidth;

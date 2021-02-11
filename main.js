@@ -51,6 +51,7 @@ let gameFinished = false;
 
 let background = new Background();
 let player = new Player();
+let foreground = new Foreground();
 
 
 function changeRoom(id, direction) {
@@ -61,8 +62,7 @@ function changeRoom(id, direction) {
 function playGame() {
     setupGame();
     background.draw();
-    // updateItems();
-    // updatePlayer();
+    foreground.update();
 }
 
 

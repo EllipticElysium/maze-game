@@ -1,4 +1,5 @@
 class Background extends Canvas {
+    canvasRect = null;
 
     constructor() {
         super();
@@ -8,10 +9,7 @@ class Background extends Canvas {
         this.canvas.height = this.dimensions;
         this.doorMin = this.dimensions * (5/12);
         this.doorMax = this.dimensions * (7/12);
-    }
-    
-    clear() {
-        this.ctx.clearRect(0,0, this.canvas.width, this.canvas.height);
+        this.canvasRect = this.canvas.getBoundingClientRect();
     }
 
     draw() {
