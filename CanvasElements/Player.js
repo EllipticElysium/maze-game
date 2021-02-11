@@ -8,9 +8,9 @@ class Player extends MovableElement {
 
     constructor() {
         super();
-        this.x = canvasBackground.width/2;
-        this.y = canvasBackground.height/2;
-        this.radius = canvasBackground.height/40;
+        this.x = background.canvas.width/2;
+        this.y = background.canvas.height/2;
+        this.radius = background.canvas.height/40;
         this.speed = 5;
         this.startTimer();
     }
@@ -32,35 +32,35 @@ class Player extends MovableElement {
         let returnVal = {};
         if(
             Room.rooms[player.currentRoom].up !== null &&
-            this.y - this.radius + this.dy - ctxBackground.lineWidth < 0 &&
+            this.y - this.radius + this.dy - background.ctx.lineWidth < 0 &&
             this.variableBetweenValues(this.x, doorMin, doorMax)
         ) {
             returnVal.direction = 'up';
             returnVal.x = this.x;
-            returnVal.y = canvasPlayer.height - this.radius - ctxBackground.lineWidth;
+            returnVal.y = background.canvas.height - this.radius - background.ctx.lineWidth;
         } else if(
             Room.rooms[player.currentRoom].right !== null &&
-            this.x + this.radius + this.dx + ctxBackground.lineWidth > canvasPlayer.width &&
+            this.x + this.radius + this.dx + background.ctx.lineWidth > background.canvas.width &&
             this.variableBetweenValues(this.y, doorMin, doorMax)
         ) {
             returnVal.direction = 'right';
-            returnVal.x = this.radius + ctxBackground.lineWidth;
+            returnVal.x = this.radius + background.ctx.lineWidth;
             returnVal.y = this.y;
         } else if(
             Room.rooms[player.currentRoom].down !== null &&
-            this.y + this.radius + this.dy + ctxBackground.lineWidth > canvasPlayer.height &&
+            this.y + this.radius + this.dy + background.ctx.lineWidth > background.canvas.height &&
             this.variableBetweenValues(this.x, doorMin, doorMax)
         ) {
             returnVal.direction = 'down';
             returnVal.x = this.x;
-            returnVal.y = this.radius + ctxBackground.lineWidth;
+            returnVal.y = this.radius + background.ctx.lineWidth;
         } else if(
             Room.rooms[player.currentRoom].left !== null &&
-            this.x - this.radius + this.dx - ctxBackground.lineWidth < 0 &&
+            this.x - this.radius + this.dx - background.ctx.lineWidth < 0 &&
             this.variableBetweenValues(this.y, doorMin, doorMax)
         ) {
             returnVal.direction = 'left';
-            returnVal.x = canvasPlayer.width - this.radius - ctxBackground.lineWidth;
+            returnVal.x = background.canvas.width - this.radius - background.ctx.lineWidth;
             returnVal.y = this.y;
         } else {
             returnVal = false;

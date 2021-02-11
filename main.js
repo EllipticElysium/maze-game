@@ -49,8 +49,9 @@ document.addEventListener('mousedown', click);
 
 let gameFinished = false;
 
+let background = new Background();
 let player = new Player();
-let background = new background();
+
 
 function changeRoom(id, direction) {
     let newRoom = Room.rooms[id].changeRoom(direction);
@@ -59,9 +60,10 @@ function changeRoom(id, direction) {
 
 function playGame() {
     setupGame();
-    drawBackground();
-    updateItems();
-    updatePlayer();
+    background.draw();
+    // drawBackground();
+    // updateItems();
+    // updatePlayer();
 }
 
 

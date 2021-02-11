@@ -1,4 +1,4 @@
-class Background {
+class Background extends Canvas {
 
     constructor() {
         super();
