@@ -28,6 +28,26 @@ class Room extends CanvasElement {
             this.availableDirections --;
             this.right = null;
         }
-        //generate treasure and enemies
+
+        this.generateTreasure();
+        this.generateEnemies();
+    }
+
+    generateTreasure() {
+        if(Math.random() <= 0.8) {
+            let index = Object.keys(this.treasure).length;
+            this.treasure[index] = new Treasure(index)
+        }    
+    }
+
+    generateEnemies() {
+        if(Math.random() <= 0.6) {
+            let index = Object.keys(this.treasure).length;
+            this.enemies[index] = new Treasure(index)
+        }    
+    }
+
+    changeRoom(direction) {
+        return this[direction];
     }
 }
