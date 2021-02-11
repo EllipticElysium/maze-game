@@ -58,3 +58,11 @@ function click(e) {
 document.addEventListener('keydown', keyDown);
 document.addEventListener('keyup', keyUp);
 document.addEventListener('mousedown', click);
+
+window.onresize = function() {
+    background = new Background();
+    background.draw();
+    foreground = new Foreground();
+    foreground.update();
+    player.resetPosition();
+};

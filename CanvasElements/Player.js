@@ -90,4 +90,9 @@ class Player extends MovableElement {
         this.score += value;
         $('#score').text("Score:  " + this.score);
     }
+
+    resetPosition() {
+        this.x = background.canvas.width/2;
+        this.y = background.canvas.height/2;
+    }
 }
