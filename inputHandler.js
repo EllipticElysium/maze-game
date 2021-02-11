@@ -1,25 +1,42 @@
 function keyDown(e) {
-    if(e.key === 'ArrowUp' || e.key === 'Up') {
+    if(
+        e.key === 'ArrowUp' || e.key === 'Up' ||
+        e.key === 'w' || e.key === 'W'
+        ) {
         player.dy = - player.speed;
-    } else if(e.key === 'ArrowRight' || e.key === 'Right') {
+    } else if(
+        e.key === 'ArrowRight' || e.key === 'Right' ||
+        e.key === 'd' || e.key === 'D'
+        ) {
         player.dx = player.speed;
-    } else if(e.key === 'ArrowDown' || e.key === 'Down') {
+    } else if(
+        e.key === 'ArrowDown' || e.key === 'Down' ||
+        e.key === 's' || e.key === 'S'
+        ) {
         player.dy = player.speed;
-    } else if(e.key === 'ArrowLeft' || e.key === 'Left') {
+    } else if(
+        e.key === 'ArrowLeft' || e.key === 'Left' ||
+        e.key === 'a' || e.key === 'A'
+        ) {
         player.dx = -player.speed;
     }
 }
 
 function keyUp(e) {
     if(
-        e.key === 'ArrowUp' || e.key === 'UP' ||
+        e.key === 'ArrowUp' || e.key === 'UP'||
+        e.key === 'w' || e.key === 'W' ||
         e.key === 'ArrowRight' || e.key === 'Right' ||
+        e.key === 'd' || e.key === 'D' ||
         e.key === 'ArrowDown' || e.key === 'Down' ||
-        e.key === 'ArrowLeft' || e.key === 'Left'
+        e.key === 's' || e.key === 'S' ||
+        e.key === 'ArrowLeft' || e.key === 'Left' ||
+        e.key === 'a' || e.key === 'A'
     ) {
         player.dx = 0;
         player.dy = 0;
     }
+    console.log(e.key);
 }
 
 function click(e) {
