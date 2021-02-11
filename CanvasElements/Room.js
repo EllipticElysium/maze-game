@@ -8,7 +8,7 @@ class Room extends CanvasElement {
     visited = false;
     availableDirections = 4;
     treasure = {};
-    items = {};
+    markers = {};
     enemies = {};
 
     constructor(index, gridSize) {
@@ -41,18 +41,24 @@ class Room extends CanvasElement {
     generateTreasure() {
         if(Math.random() <= 0.8) {
             let index = Object.keys(this.treasure).length;
-            this.treasure[index] = new Treasure(index)
+            this.treasure[index] = new Treasure(index);
         }    
     }
 
     generateEnemies() {
         if(Math.random() <= 1) {
             let index = Object.keys(this.treasure).length;
-            this.enemies[index] = new Enemy(index)
+            this.enemies[index] = new Enemy(index);
         }    
     }
 
     changeRoom(direction) {
         return this[direction];
+    }
+
+    addMarker() {
+        let index = Object.keys(this.markers).length;
+        this.markers[index] = new Marker(index);
+        background.draw();
     }
 }

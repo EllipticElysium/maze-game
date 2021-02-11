@@ -1,5 +1,5 @@
 class Player extends MovableElement {
-    currentRoom = null;
+    room = null;
     score = 0;
     time = 0;
     won = false;
@@ -31,7 +31,7 @@ class Player extends MovableElement {
     hitDoor() {
         let returnVal = {};
         if(
-            Room.rooms[player.currentRoom].up !== null &&
+            Room.rooms[player.room].up !== null &&
             this.y - this.radius + this.dy - background.ctx.lineWidth < 0 &&
             this.variableBetweenValues(this.x, background.doorMin, background.doorMax)
         ) {
@@ -39,7 +39,7 @@ class Player extends MovableElement {
             returnVal.x = this.x;
             returnVal.y = background.canvas.height - this.radius - background.ctx.lineWidth;
         } else if(
-            Room.rooms[player.currentRoom].right !== null &&
+            Room.rooms[player.room].right !== null &&
             this.x + this.radius + this.dx + background.ctx.lineWidth > background.canvas.width &&
             this.variableBetweenValues(this.y, background.doorMin, background.doorMax)
         ) {
@@ -47,7 +47,7 @@ class Player extends MovableElement {
             returnVal.x = this.radius + background.ctx.lineWidth;
             returnVal.y = this.y;
         } else if(
-            Room.rooms[player.currentRoom].down !== null &&
+            Room.rooms[player.room].down !== null &&
             this.y + this.radius + this.dy + background.ctx.lineWidth > background.canvas.height &&
             this.variableBetweenValues(this.x, background.doorMin, background.doorMax)
         ) {
@@ -55,7 +55,7 @@ class Player extends MovableElement {
             returnVal.x = this.x;
             returnVal.y = this.radius + background.ctx.lineWidth;
         } else if(
-            Room.rooms[player.currentRoom].left !== null &&
+            Room.rooms[player.room].left !== null &&
             this.x - this.radius + this.dx - background.ctx.lineWidth < 0 &&
             this.variableBetweenValues(this.y, background.doorMin, background.doorMax)
         ) {
@@ -67,7 +67,7 @@ class Player extends MovableElement {
         }
 
         if(returnVal !== false) {
-            if(Room.rooms[player.currentRoom][returnVal.direction] === 'end') {
+            if(Room.rooms[player.room][returnVal.direction] === 'end') {
                 this.playerWon();
                 returnVal = false;
             }

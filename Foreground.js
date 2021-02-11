@@ -25,8 +25,8 @@ class Foreground extends Canvas {
         this.ctx.fill();
 
         let self = this;
-        Object.keys(Room.rooms[player.currentRoom].treasure).forEach(function(index) {
-            let treasure = Room.rooms[player.currentRoom].treasure[index];
+        Object.keys(Room.rooms[player.room].treasure).forEach(function(index) {
+            let treasure = Room.rooms[player.room].treasure[index];
             treasure.update();
             self.ctx.beginPath();
             self.ctx.arc(treasure.x, treasure.y, treasure.radius, 0, Math.PI * 2);
@@ -34,8 +34,8 @@ class Foreground extends Canvas {
             self.ctx.fill();
         })
     
-        Object.keys(Room.rooms[player.currentRoom].enemies).forEach(function(index) {
-            let enemy = Room.rooms[player.currentRoom].enemies[index];
+        Object.keys(Room.rooms[player.room].enemies).forEach(function(index) {
+            let enemy = Room.rooms[player.room].enemies[index];
             enemy.update();
             self.ctx.beginPath();
             self.ctx.arc(enemy.x, enemy.y, enemy.radius, 0, Math.PI * 2);

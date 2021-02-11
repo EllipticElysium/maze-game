@@ -14,15 +14,16 @@ class Background extends Canvas {
 
     draw() {
         this.clear();
-        let id = player.currentRoom;
+        let id = player.room
 
         this.ctx.lineWidth = 20;
 
-        this.createWalls();
-        this.createDoors(id);
+        this.drawWalls();
+        this.drawDoors(id);
+        this.drawMarkers();
     }
 
-    createWalls() {
+    drawWalls() {
         this.ctx.beginPath();
         this.ctx.strokeStyle = 'black';
         this.ctx.moveTo(0, 0);
@@ -41,7 +42,7 @@ class Background extends Canvas {
         this.ctx.stroke();
     }
 
-    createDoors(id) {
+    drawDoors(id) {
         let upDoor = new Door('up');
         let rightDoor = new Door('right');
         let downDoor = new Door('down');
@@ -64,5 +65,16 @@ class Background extends Canvas {
         rightDoor.draw()
         downDoor.draw()
         leftDoor.draw()
+    }
+
+    drawMarkers() {
+        let self = this;
+        Object.keys(Room.rooms[player.room].markers).forEach(function(index) {
+            let marker = Room.rooms[player.room].markers[index];
+            self.ctx.beginPath();
+            self.ctx.arc(marker.x, marker.y, marker.radius, 0, Math.PI * 2);
+            self.ctx.fillStyle = 'blue';
+            self.ctx.fill();
+        })
     }
 }

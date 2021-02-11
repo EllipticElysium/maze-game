@@ -11,7 +11,7 @@ let foreground = new Foreground();
 
 function changeRoom(id, direction) {
     let newRoom = Room.rooms[id].changeRoom(direction);
-    player.currentRoom = newRoom;
+    player.room = newRoom;
 }
 
 function playGame() {

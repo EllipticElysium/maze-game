@@ -19,6 +19,8 @@ function keyDown(e) {
         e.key === 'a' || e.key === 'A'
         ) {
         player.dx = -player.speed;
+    } else if(e.key === " ") {
+        Room.rooms[player.room].addMarker();
     }
 }
 
@@ -36,7 +38,6 @@ function keyUp(e) {
         player.dx = 0;
         player.dy = 0;
     }
-    console.log(e.key);
 }
 
 function click(e) {
