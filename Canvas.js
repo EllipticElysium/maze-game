@@ -16,6 +16,7 @@ class Canvas {
     }
 }
 
+/* istanbul ignore next */ 
 if (typeof module !== 'undefined') {
     module.exports = Canvas;
 }
