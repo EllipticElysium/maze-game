@@ -24,7 +24,7 @@ class MovableElement extends CanvasElement {
             let roomChange = this.hitDoor();
             if(roomChange !== false) {
                 player.currentRoom = Room.rooms[player.currentRoom].changeRoom(roomChange.direction);
-                drawBackground()
+                background.draw();
                 this.x = roomChange.x;
                 this.y = roomChange.y;
             }        

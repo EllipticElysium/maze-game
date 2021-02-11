@@ -31,13 +31,13 @@ function keyUp(e) {
 function click(e) {
     if(e.button === 0) {
         if(
-            e.clientY >= canvasRect.top &&
-            e.clientY <= canvasRect.bottom &&
-            e.clientX >= canvasRect.left &&
-            e.clientX <= canvasRect.right
+            e.clientY >= background.canvasRect.top &&
+            e.clientY <= background.canvasRect.bottom &&
+            e.clientX >= background.canvasRect.left &&
+            e.clientX <= background.canvasRect.right
         ) {
-            let x = e.clientX - canvasRect.x;
-            let y = e.clientY - canvasRect.y;
+            let x = e.clientX - background.canvasRect.x;
+            let y = e.clientY - background.canvasRect.y;
             player.fireProjectile(x, y);
         }
     }
