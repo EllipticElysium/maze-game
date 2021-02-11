@@ -17,6 +17,10 @@ const ctxPlayer = canvasPlayer.getContext('2d');
 
 let canvasRect = canvasBackground.getBoundingClientRect();
 
+const doorMin = gameDimensions * (5/12);
+const doorMax = gameDimensions * (7/12);
+
+
 $('.background-image').width(gameDimensions/2);
 $('.background-image').height(gameDimensions/2);
 

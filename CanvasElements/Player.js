@@ -13,25 +13,12 @@ class Player extends MovableElement {
         this.speed = 5;
     }
 
-    move() {
-        super.move();
-        let roomChange = this.hitDoor();
-
-        if(roomChange !== false) {
-            currentRoom = rooms[currentRoom].changeRoom(roomChange.direction);
-            drawBackground()
-            this.x = roomChange.x;
-            this.y = roomChange.y;
-        }
-    }
-
     hitDoor() {
         let returnVal = {};
         if(
             rooms[currentRoom].up !== null &&
             this.y - this.radius + this.dy - ctxBackground.lineWidth < 0 &&
-            this.x > canvasPlayer.width*(5/12) &&
-            this.x < canvasPlayer.width*(7/12)
+            this.variableBetweenValues(this.x, doorMin, doorMax)
         ) {
             returnVal.direction = 'up';
             returnVal.x = this.x;
@@ -39,8 +26,7 @@ class Player extends MovableElement {
         } else if(
             rooms[currentRoom].right !== null &&
             this.x + this.radius + this.dx + ctxBackground.lineWidth > canvasPlayer.width &&
-            this.y > canvasPlayer.height*(5/12) &&
-            this.y < canvasPlayer.height*(7/12)
+            this.variableBetweenValues(this.y, doorMin, doorMax)
         ) {
             returnVal.direction = 'right';
             returnVal.x = this.radius + ctxBackground.lineWidth;
@@ -48,8 +34,7 @@ class Player extends MovableElement {
         } else if(
             rooms[currentRoom].down !== null &&
             this.y + this.radius + this.dy + ctxBackground.lineWidth > canvasPlayer.height &&
-            this.x > canvasPlayer.width*(5/12) &&
-            this.x < canvasPlayer.width*(7/12)
+            this.variableBetweenValues(this.x, doorMin, doorMax)
         ) {
             returnVal.direction = 'down';
             returnVal.x = this.x;
@@ -57,8 +42,7 @@ class Player extends MovableElement {
         } else if(
             rooms[currentRoom].left !== null &&
             this.x - this.radius + this.dx - ctxBackground.lineWidth < 0 &&
-            this.y > canvasPlayer.height*(5/12) &&
-            this.y < canvasPlayer.height*(7/12)
+            tthis.variableBetweenValues(this.y, doorMin, doorMax)
         ) {
             returnVal.direction = 'left';
             returnVal.x = canvasPlayer.width - this.radius - ctxBackground.lineWidth;
