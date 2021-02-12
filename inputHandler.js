@@ -3,24 +3,24 @@ function keyDown(e) {
         e.key === 'ArrowUp' || e.key === 'Up' ||
         e.key === 'w' || e.key === 'W'
         ) {
-        player.dy = - player.speed;
+        global.player.dy = - global.player.speed;
     } else if(
         e.key === 'ArrowRight' || e.key === 'Right' ||
         e.key === 'd' || e.key === 'D'
         ) {
-        player.dx = player.speed;
+        global.player.dx = global.player.speed;
     } else if(
         e.key === 'ArrowDown' || e.key === 'Down' ||
         e.key === 's' || e.key === 'S'
         ) {
-        player.dy = player.speed;
+        global.player.dy = global.player.speed;
     } else if(
         e.key === 'ArrowLeft' || e.key === 'Left' ||
         e.key === 'a' || e.key === 'A'
         ) {
-        player.dx = -player.speed;
+        global.player.dx = -global.player.speed;
     } else if(e.key === " ") {
-        Room.rooms[player.room].addMarker();
+        Room.rooms[global.player.room].addMarker();
     }
 }
 
@@ -35,22 +35,22 @@ function keyUp(e) {
         e.key === 'ArrowLeft' || e.key === 'Left' ||
         e.key === 'a' || e.key === 'A'
     ) {
-        player.dx = 0;
-        player.dy = 0;
+        global.player.dx = 0;
+        global.player.dy = 0;
     }
 }
 
 function click(e) {
     if(e.button === 0) {
         if(
-            e.clientY >= background.canvasRect.top &&
-            e.clientY <= background.canvasRect.bottom &&
-            e.clientX >= background.canvasRect.left &&
-            e.clientX <= background.canvasRect.right
+            e.clientY >= global.background.canvasRect.top &&
+            e.clientY <= global.background.canvasRect.bottom &&
+            e.clientX >= global.background.canvasRect.left &&
+            e.clientX <= global.background.canvasRect.right
         ) {
-            let x = e.clientX - background.canvasRect.x;
-            let y = e.clientY - background.canvasRect.y;
-            player.fireProjectile(x, y);
+            let x = e.clientX - global.background.canvasRect.x;
+            let y = e.clientY - global.background.canvasRect.y;
+            global.player.fireProjectile(x, y);
         }
     }
 }
@@ -61,10 +61,10 @@ document.addEventListener('mousedown', click);
 
 window.onresize = function() {
     background = new Background();
-    background.draw();
-    foreground = new Foreground();
-    foreground.update();
-    player.resetPosition();
+    global.background.draw();
+    global.foreground = new Foreground();
+    global.foreground.update();
+    global.player.resetPosition();
 };
 
 if (typeof module !== 'undefined') {

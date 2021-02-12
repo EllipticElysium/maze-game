@@ -5,18 +5,18 @@ export default class Background extends Canvas {
 
     constructor() {
         super();
-        // this.canvas = document.getElementById('canvas-background');
-        // this.ctx = this.canvas.getContext('2d');
-        // this.canvas.width = this.dimensions;
-        // this.canvas.height = this.dimensions;
-        // this.doorMin = this.dimensions * (5/12);
-        // this.doorMax = this.dimensions * (7/12);
-        // this.canvasRect = this.canvas.getBoundingClientRect();
+        this.canvas = document.getElementById('canvas-background');
+        this.ctx = this.canvas.getContext('2d');
+        this.canvas.width = this.dimensions;
+        this.canvas.height = this.dimensions;
+        this.doorMin = this.dimensions * (5/12);
+        this.doorMax = this.dimensions * (7/12);
+        this.canvasRect = this.canvas.getBoundingClientRect();
     }
 
     draw() {
         this.clear();
-        let id = player.room
+        let id = global.player.room
 
         this.ctx.lineWidth = 20;
 
@@ -71,8 +71,8 @@ export default class Background extends Canvas {
 
     drawMarkers() {
         let self = this;
-        Object.keys(Room.rooms[player.room].markers).forEach(function(index) {
-            let marker = Room.rooms[player.room].markers[index];
+        Object.keys(Room.rooms[global.player.room].markers).forEach(function(index) {
+            let marker = Room.rooms[global.player.room].markers[index];
             self.ctx.beginPath();
             self.ctx.arc(marker.x, marker.y, marker.radius, 0, Math.PI * 2);
             self.ctx.fillStyle = 'blue';

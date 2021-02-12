@@ -30,38 +30,38 @@ export default class Door{
 
     /* istanbul ignore next */ 
     upDoor() {
-        background.ctx.beginPath();
-        background.ctx.strokeStyle = this.colours[this.status];
-        background.ctx.moveTo(background.doorMin, 0);
-        background.ctx.lineTo(background.doorMax, 0);
-        background.ctx.stroke();
+        global.background.ctx.beginPath();
+        global.background.ctx.strokeStyle = this.colours[this.status];
+        global.background.ctx.moveTo(global.background.doorMin, 0);
+        global.background.ctx.lineTo(global.background.doorMax, 0);
+        global.background.ctx.stroke();
     }
 
     /* istanbul ignore next */ 
     rightDoor() {
-        background.ctx.beginPath();
-        background.ctx.strokeStyle = this.colours[this.status];
-        background.ctx.moveTo(background.canvas.width, background.doorMin);
-        background.ctx.lineTo(background.canvas.width, background.doorMax);
-        background.ctx.stroke();
+        global.background.ctx.beginPath();
+        global.background.ctx.strokeStyle = this.colours[this.status];
+        global.background.ctx.moveTo(global.background.canvas.width, global.background.doorMin);
+        global.background.ctx.lineTo(global.background.canvas.width, global.background.doorMax);
+        global.background.ctx.stroke();
     }
 
     /* istanbul ignore next */ 
     downDoor() {
-        background.ctx.beginPath();
-        background.ctx.strokeStyle = this.colours[this.status];
-        background.ctx.moveTo(background.doorMax, background.canvas.height);
-        background.ctx.lineTo(background.doorMin, background.canvas.height);
-        background.ctx.stroke();
+        global.background.ctx.beginPath();
+        global.background.ctx.strokeStyle = this.colours[this.status];
+        global.background.ctx.moveTo(global.background.doorMax, global.background.canvas.height);
+        global.background.ctx.lineTo(global.background.doorMin, global.background.canvas.height);
+        global.background.ctx.stroke();
     }
 
     /* istanbul ignore next */ 
     leftDoor() {
-        background.ctx.beginPath();
-        background.ctx.strokeStyle = this.colours[this.status];
-        background.ctx.moveTo(0, background.doorMax);
-        background.ctx.lineTo(0, background.doorMin);
-        background.ctx.stroke();
+        global.background.ctx.beginPath();
+        global.background.ctx.strokeStyle = this.colours[this.status];
+        global.background.ctx.moveTo(0, global.background.doorMax);
+        global.background.ctx.lineTo(0, global.background.doorMin);
+        global.background.ctx.stroke();
     }
 
 }

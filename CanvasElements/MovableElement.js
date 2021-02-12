@@ -1,4 +1,7 @@
-class MovableElement extends CanvasElement {
+import CanvasElement from './CanvasElement';
+
+
+export default class MovableElement extends CanvasElement {
     speed = 0;
     dx = 0;
     dy = 0;
@@ -19,12 +22,12 @@ class MovableElement extends CanvasElement {
                 this.y += this.dy;
             }
         } else if(this instanceof Projectile){
-            delete player.projectiles[this.id];
+            delete global.player.projectiles[this.id];
         } else if(this instanceof Player) {    
             let roomChange = this.hitDoor();
             if(roomChange !== false) {
-                player.room = Room.rooms[player.room].changeRoom(roomChange.direction);
-                background.draw();
+                global.player.room = Room.rooms[global.player.room].changeRoom(roomChange.direction);
+                global.background.draw();
                 this.x = roomChange.x;
                 this.y = roomChange.y;
             }        
@@ -40,13 +43,13 @@ class MovableElement extends CanvasElement {
     }
 
     getWallHit() {
-        if(this.x + this.radius + this.dx > background.canvas.width - background.ctx.lineWidth) {
+        if(this.x + this.radius + this.dx > global.background.canvas.width - global.background.ctx.lineWidth) {
             return 'right';
-        } else if(this.x - this.radius + this.dx < 0 + background.ctx.lineWidth) {
+        } else if(this.x - this.radius + this.dx < 0 + global.background.ctx.lineWidth) {
             return 'left';
-        } else if(this.y + this.radius + this.dy > background.canvas.height - background.ctx.lineWidth) {
+        } else if(this.y + this.radius + this.dy > global.background.canvas.height - global.background.ctx.lineWidth) {
             return 'down';
-        } else if(this.y - this.radius + this.dy < 0 + background.ctx.lineWidth) {
+        } else if(this.y - this.radius + this.dy < 0 + global.background.ctx.lineWidth) {
             return 'up';
         } else {
             return false;
@@ -61,8 +64,4 @@ class MovableElement extends CanvasElement {
         }
 
     }
-}
-
-if (typeof module !== 'undefined') {
-    module.exports = MovableElement;
 }

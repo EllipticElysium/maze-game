@@ -1,4 +1,6 @@
-class Room extends CanvasElement {
+import CanvasElement from './CanvasElement';
+
+export default class Room extends CanvasElement {
     static rooms = [];
     up = '';
     right = '';
@@ -59,10 +61,6 @@ class Room extends CanvasElement {
     addMarker() {
         let index = Object.keys(this.markers).length;
         this.markers[index] = new Marker(index);
-        background.draw();
+        global.background.draw();
     }
-}
-
-if (typeof module !== 'undefined') {
-    module.exports = Room;
 }

@@ -1,4 +1,7 @@
-class Enemy extends GeneratedElement {
+import GeneratedElement from './GeneratedElement';
+
+
+export default class Enemy extends GeneratedElement {
     levels = {
         '1': [7, 1],
         '2': [10, 2],
@@ -33,18 +36,18 @@ class Enemy extends GeneratedElement {
 
     detectHit() {
         let self = this;
-        Object.keys(player.projectiles).forEach(function(index) {
-            let Projectile = player.projectiles[index];
+        Object.keys(global.player.projectiles).forEach(function(index) {
+            let Projectile = global.player.projectiles[index];
             if(self.hit(Projectile) && Projectile.used === false) {
                 Projectile.used = true;
                 console.log('projectile hit enemy!');
                 self.projectileHit();
             }
         })
-        if(this.hit(player)) {
+        if(this.hit(global.player)) {
             if(this.overlay === false) {
                 this.overlay = true;
-                player.updateScore(-200);
+                global.player.updateScore(-200);
             }
         } else {
             this.overlay = false;
@@ -52,15 +55,11 @@ class Enemy extends GeneratedElement {
     }
 
     projectileHit() {
-        delete player.projectiles[Projectile.id];
+        delete global.player.projectiles[Projectile.id];
         if(this.level > 1) {
             this.level -= 1;
         } else {
-            delete Room.rooms[player.room].enemies[this.id];
+            delete Room.rooms[global.player.room].enemies[this.id];
         }
     }
-}
-
-if (typeof module !== 'undefined') {
-    module.exports = Enemy;
 }

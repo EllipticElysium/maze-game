@@ -10,9 +10,11 @@ let settings = {};
 const configURL = './configuration.txt'
 
 
-let background = new Background();
-let player = new Player();
-let foreground = new Foreground();
+global.background = new Background();
+global.player = new Player();
+global.foreground = new Foreground();
+
+
 
 
 function configIsValid(config) {
@@ -30,9 +32,10 @@ function configIsValid(config) {
 
 function playGame(config) {
     if(configIsValid(config)) {
+        console.log('here');
         setupGame();
-        background.draw();
-        foreground.update();
+        global.background.draw();
+        global.foreground.update();
     } else {
         console.log('invalid configuration')
     }
