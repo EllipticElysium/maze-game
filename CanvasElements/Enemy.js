@@ -20,6 +20,8 @@ export default class Enemy extends GeneratedElement {
         this.speed = this.levels[this.level][1];
         this.dx = 1;
         this.dy = 1;
+        this.width = global.background.canvas.height/10;
+        this.height = global.background.canvas.height/10;
         this.setRandomDirection();
     }
 

@@ -10,8 +10,6 @@ export default class Player extends MovableElement {
     won = false;
     projectileCounter = 0;
     projectiles = {};
-    width = null;
-    height = null
 
     constructor() {
         super();

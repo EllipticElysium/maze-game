@@ -7,6 +7,8 @@ export default class MovableElement extends CanvasElement {
     dy = 0;
     wallHit = false;
     type = null;
+    width = null;
+    height = null;
 
     constructor() {
         super();
