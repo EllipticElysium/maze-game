@@ -43,7 +43,7 @@ export default class Enemy extends GeneratedElement {
             if(self.hit(Projectile) && Projectile.used === false) {
                 Projectile.used = true;
                 console.log('projectile hit enemy!');
-                self.projectileHit();
+                self.projectileHit(Projectile);
             }
         })
         if(this.hit(global.player)) {
@@ -56,7 +56,7 @@ export default class Enemy extends GeneratedElement {
         }
     }
 
-    projectileHit() {
+    projectileHit(Projectile) {
         delete global.player.projectiles[Projectile.id];
         if(this.level > 1) {
             this.level -= 1;

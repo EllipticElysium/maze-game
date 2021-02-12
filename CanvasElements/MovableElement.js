@@ -1,6 +1,7 @@
 import CanvasElement from './CanvasElement';
 import Room from './Room';
 
+
 export default class MovableElement extends CanvasElement {
     speed = 0;
     dx = 0;
@@ -22,7 +23,7 @@ export default class MovableElement extends CanvasElement {
                 this.x += this.dx;
                 this.y += this.dy;
             }
-        } else if(this instanceof Projectile){
+        } else if(this.type === 'Projectile'){
             delete global.player.projectiles[this.id];
         } else if(this.type ==  'Player') {    
             let roomChange = this.hitDoor();

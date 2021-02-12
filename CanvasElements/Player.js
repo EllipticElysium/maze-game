@@ -1,5 +1,7 @@
 import MovableElement from './MovableElement';
 import Room from './Room';
+import Projectile from './Projectile';
+
 
 
 export default class Player extends MovableElement {

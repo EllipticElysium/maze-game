@@ -3,6 +3,8 @@ import Foreground from './Foreground';
 import Player from './CanvasElements/Player';
 import MapGenerator from './mapGenerator';
 
+require('./inputHandler');
+
 
 
 global.settings = {};
