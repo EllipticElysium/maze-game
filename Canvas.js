@@ -1,4 +1,4 @@
-class Canvas {
+export default class Canvas {
     canvas = null;
     ctx = null
     dimensions = null;
@@ -16,7 +16,3 @@ class Canvas {
     }
 }
 
-/* istanbul ignore next */ 
-if (typeof module !== 'undefined') {
-    module.exports = Canvas;
-}

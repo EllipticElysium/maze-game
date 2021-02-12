@@ -1,11 +1,20 @@
-let settings = {};
+import Background from './Background';
+import Foreground from './Foreground';
+import Player from './CanvasElements/Player';
+import MapGenerator from './mapGenerator';
+
+require('./inputHandler');
+
+
+global.settings = {};
 
 const configURL = './configuration.txt'
 
 
-let background = new Background();
-let player = new Player();
-let foreground = new Foreground();
+global.background = new Background();
+global.player = new Player();
+global.foreground = new Foreground();
+
 
 
 function configIsValid(config) {
@@ -14,7 +23,7 @@ function configIsValid(config) {
         inputsettings.minimumNodes < 
         (inputsettings.gridSize ** 2 * inputsettings.removed)
     ) {
-        settings = inputsettings;
+        global.settings = inputsettings;
         return true;
     } else {
         return false;
@@ -23,9 +32,9 @@ function configIsValid(config) {
 
 function playGame(config) {
     if(configIsValid(config)) {
-        setupGame();
-        background.draw();
-        foreground.update();
+        new MapGenerator().setupGame();
+        global.background.draw();
+        global.foreground.update();
     } else {
         console.log('invalid configuration')
     }

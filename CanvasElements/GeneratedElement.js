@@ -1,4 +1,6 @@
-class GeneratedElement extends MovableElement{
+import MovableElement from './MovableElement';
+
+export default class GeneratedElement extends MovableElement{
     used = false;
 
     constructor() {
@@ -7,8 +9,8 @@ class GeneratedElement extends MovableElement{
     }
 
     setRandomPosition() {
-        let width = background.canvas.width;
-        let height = background.canvas.height;
+        let width = global.background.canvas.width;
+        let height = global.background.canvas.height;
         this.x = Math.floor(Math.random() * (width * 0.6)) + (width * 0.2);
         this.y = Math.floor(Math.random() * (height * 0.6)) + (width * 0.2);
     }
@@ -29,8 +31,4 @@ class GeneratedElement extends MovableElement{
             return false;
         }
     }
-}
-
-if (typeof module !== 'undefined') {
-    module.exports = GeneratedElement;
 }

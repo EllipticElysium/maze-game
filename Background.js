@@ -1,4 +1,8 @@
-class Background extends Canvas {
+import Canvas from './Canvas';
+import Door from './Door';
+import Room from './CanvasElements/Room';
+
+export default class Background extends Canvas {
     canvasRect = null;
 
     constructor() {
@@ -14,7 +18,7 @@ class Background extends Canvas {
 
     draw() {
         this.clear();
-        let id = player.room
+        let id = global.player.room
 
         this.ctx.lineWidth = 20;
 
@@ -69,16 +73,12 @@ class Background extends Canvas {
 
     drawMarkers() {
         let self = this;
-        Object.keys(Room.rooms[player.room].markers).forEach(function(index) {
-            let marker = Room.rooms[player.room].markers[index];
+        Object.keys(Room.rooms[global.player.room].markers).forEach(function(index) {
+            let marker = Room.rooms[global.player.room].markers[index];
             self.ctx.beginPath();
             self.ctx.arc(marker.x, marker.y, marker.radius, 0, Math.PI * 2);
             self.ctx.fillStyle = 'blue';
             self.ctx.fill();
         })
     }
-}
-
-if (typeof module !== 'undefined') {
-    module.exports = Background;
 }

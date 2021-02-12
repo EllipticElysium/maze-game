@@ -1,13 +1,16 @@
-class Projectile extends GeneratedElement {
+import GeneratedElement from './GeneratedElement';
+
+export default class Projectile extends GeneratedElement {
     angle = 0;
     speed = 5;
 
     constructor(index, x, y) {
         super();
         this.id = index;
-        this.x = player.x;
-        this.y = player.y;
-        this.radius = background.canvas.height/100;
+        this.type = 'Projectile';
+        this.x = global.player.x;
+        this.y = global.player.y;
+        this.radius = global.background.canvas.height/100;
         
         this.setDirection(x, y);
     }
@@ -21,8 +24,4 @@ class Projectile extends GeneratedElement {
             this.dy *= -1;
         }
     }
-}
-
-if (typeof module !== 'undefined') {
-    module.exports = Projectile;
 }

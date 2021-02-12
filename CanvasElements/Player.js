@@ -1,4 +1,8 @@
-class Player extends MovableElement {
+import MovableElement from './MovableElement';
+import Room from './Room';
+import Projectile from './Projectile';
+
+export default class Player extends MovableElement {
     room = null;
     score = 0;
     time = 0;
@@ -8,9 +12,10 @@ class Player extends MovableElement {
 
     constructor() {
         super();
-        this.x = background.canvas.width/2;
-        this.y = background.canvas.height/2;
-        this.radius = background.canvas.height/40;
+        this.type = 'Player';
+        this.x = global.background.canvas.width/2;
+        this.y = global.background.canvas.height/2;
+        this.radius = global.background.canvas.height/40;
         this.speed = 5;
         this.startTimer();
     }
@@ -18,11 +23,11 @@ class Player extends MovableElement {
     startTimer() {
         let start = Date.now();
         setInterval(function() {
-            if(player.finished !== true) {
+            if(global.player.finished !== true) {
                 let time = Date.now() - start;
-                player.time = Math.floor(time / 1000)
+                global.player.time = Math.floor(time / 1000)
         
-                $('#time').text("Time:  " + player.time);
+                $('#time').text("Time:  " + global.player.time);
             }
         }, 100);
     
@@ -31,43 +36,43 @@ class Player extends MovableElement {
     hitDoor() {
         let returnVal = {};
         if(
-            Room.rooms[player.room].up !== null &&
-            this.y - this.radius + this.dy - background.ctx.lineWidth < 0 &&
-            this.variableBetweenValues(this.x, background.doorMin, background.doorMax)
+            Room.rooms[global.player.room].up !== null &&
+            this.y - this.radius + this.dy - global.background.ctx.lineWidth < 0 &&
+            this.variableBetweenValues(this.x, global.background.doorMin, global.background.doorMax)
         ) {
             returnVal.direction = 'up';
             returnVal.x = this.x;
-            returnVal.y = background.canvas.height - this.radius - background.ctx.lineWidth;
+            returnVal.y = global.background.canvas.height - this.radius - global.background.ctx.lineWidth;
         } else if(
-            Room.rooms[player.room].right !== null &&
-            this.x + this.radius + this.dx + background.ctx.lineWidth > background.canvas.width &&
-            this.variableBetweenValues(this.y, background.doorMin, background.doorMax)
+            Room.rooms[global.player.room].right !== null &&
+            this.x + this.radius + this.dx + global.background.ctx.lineWidth > global.background.canvas.width &&
+            this.variableBetweenValues(this.y, global.background.doorMin, global.background.doorMax)
         ) {
             returnVal.direction = 'right';
-            returnVal.x = this.radius + background.ctx.lineWidth;
+            returnVal.x = this.radius + global.background.ctx.lineWidth;
             returnVal.y = this.y;
         } else if(
-            Room.rooms[player.room].down !== null &&
-            this.y + this.radius + this.dy + background.ctx.lineWidth > background.canvas.height &&
-            this.variableBetweenValues(this.x, background.doorMin, background.doorMax)
+            Room.rooms[global.player.room].down !== null &&
+            this.y + this.radius + this.dy + global.background.ctx.lineWidth > global.background.canvas.height &&
+            this.variableBetweenValues(this.x, global.background.doorMin, global.background.doorMax)
         ) {
             returnVal.direction = 'down';
             returnVal.x = this.x;
-            returnVal.y = this.radius + background.ctx.lineWidth;
+            returnVal.y = this.radius + global.background.ctx.lineWidth;
         } else if(
-            Room.rooms[player.room].left !== null &&
-            this.x - this.radius + this.dx - background.ctx.lineWidth < 0 &&
-            this.variableBetweenValues(this.y, background.doorMin, background.doorMax)
+            Room.rooms[global.player.room].left !== null &&
+            this.x - this.radius + this.dx - global.background.ctx.lineWidth < 0 &&
+            this.variableBetweenValues(this.y, global.background.doorMin, global.background.doorMax)
         ) {
             returnVal.direction = 'left';
-            returnVal.x = background.canvas.width - this.radius - background.ctx.lineWidth;
+            returnVal.x = global.background.canvas.width - this.radius - global.background.ctx.lineWidth;
             returnVal.y = this.y;
         } else {
             returnVal = false;
         }
 
         if(returnVal !== false) {
-            if(Room.rooms[player.room][returnVal.direction] === 'end') {
+            if(Room.rooms[global.player.room][returnVal.direction] === 'end') {
                 this.playerWon();
                 returnVal = false;
             }
@@ -92,11 +97,7 @@ class Player extends MovableElement {
     }
 
     resetPosition() {
-        this.x = background.canvas.width/2;
-        this.y = background.canvas.height/2;
+        this.x = global.background.canvas.width/2;
+        this.y = global.background.canvas.height/2;
     }
-}
-
-if (typeof module !== 'undefined') {
-    module.exports = Player;
 }

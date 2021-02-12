@@ -1,8 +1,12 @@
-class MovableElement extends CanvasElement {
+import CanvasElement from './CanvasElement';
+import Room from './Room';
+
+export default class MovableElement extends CanvasElement {
     speed = 0;
     dx = 0;
     dy = 0;
     wallHit = false;
+    type = null;
 
     constructor() {
         super();
@@ -11,24 +15,24 @@ class MovableElement extends CanvasElement {
     move() {
         this.wallHit = this.getWallHit();
         if(this.wallHit === false) {
-            if(this instanceof Enemy) {
+            if(this.type == 'Enemy') {
                 this.x += this.speed * this.dx;
                 this.y += this.speed * this.dy; 
             } else {
                 this.x += this.dx;
                 this.y += this.dy;
             }
-        } else if(this instanceof Projectile){
-            delete player.projectiles[this.id];
-        } else if(this instanceof Player) {    
+        } else if(this.type === 'Projectile'){
+            delete global.player.projectiles[this.id];
+        } else if(this.type ==  'Player') {    
             let roomChange = this.hitDoor();
             if(roomChange !== false) {
-                player.room = Room.rooms[player.room].changeRoom(roomChange.direction);
-                background.draw();
+                global.player.room = Room.rooms[global.player.room].changeRoom(roomChange.direction);
+                global.background.draw();
                 this.x = roomChange.x;
                 this.y = roomChange.y;
             }        
-        } else if(this instanceof Enemy) {
+        } else if(this.type == 'Enemy') {
             if(this.wallHit === 'up' || this.wallHit === 'down') {
                 this.dy *= -1;
             } else if(this.wallHit === 'right' || this.wallHit === 'left') {
@@ -40,13 +44,13 @@ class MovableElement extends CanvasElement {
     }
 
     getWallHit() {
-        if(this.x + this.radius + this.dx > background.canvas.width - background.ctx.lineWidth) {
+        if(this.x + this.radius + this.dx > global.background.canvas.width - global.background.ctx.lineWidth) {
             return 'right';
-        } else if(this.x - this.radius + this.dx < 0 + background.ctx.lineWidth) {
+        } else if(this.x - this.radius + this.dx < 0 + global.background.ctx.lineWidth) {
             return 'left';
-        } else if(this.y + this.radius + this.dy > background.canvas.height - background.ctx.lineWidth) {
+        } else if(this.y + this.radius + this.dy > global.background.canvas.height - global.background.ctx.lineWidth) {
             return 'down';
-        } else if(this.y - this.radius + this.dy < 0 + background.ctx.lineWidth) {
+        } else if(this.y - this.radius + this.dy < 0 + global.background.ctx.lineWidth) {
             return 'up';
         } else {
             return false;
@@ -61,8 +65,4 @@ class MovableElement extends CanvasElement {
         }
 
     }
-}
-
-if (typeof module !== 'undefined') {
-    module.exports = MovableElement;
 }

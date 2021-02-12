@@ -1,4 +1,4 @@
-const Canvas = require('../Canvas');
+import Canvas from '../Canvas';
 
 test("A new Canvas dimensions is set to 80% of the window height", () => {
     window.innerHeight = 100;

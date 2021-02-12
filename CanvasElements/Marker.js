@@ -1,14 +1,12 @@
-class Marker extends CanvasElement {
+import CanvasElement from './CanvasElement';
+
+export default class Marker extends CanvasElement {
 
     constructor(index) {
         super()
         this.id = index;
-        this.x = player.x;
-        this.y = player.y;
-        this.radius = background.canvas.height/15;
+        this.x = global.player.x;
+        this.y = global.player.y;
+        this.radius = global.background.canvas.height/15;
     }
-}
-
-if (typeof module !== 'undefined') {
-    module.exports = Marker;
 }
