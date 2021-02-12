@@ -22,9 +22,13 @@ export default class Foreground extends Canvas {
     }
 
     draw() {
+        const image = document.getElementById('source');
+
+        this.ctx.drawImage(image, global.player.x - global.player.radius, global.player.y - global.player.radius, global.player.width, global.player.height);
+
         this.ctx.beginPath();
         this.ctx.arc(global.player.x, global.player.y, global.player.radius, 0, Math.PI * 2);
-        this.ctx.fillStyle = 'purple';
+        this.ctx.fillStyle = 'transparent';
         this.ctx.fill();
 
         let self = this;

@@ -10,6 +10,8 @@ export default class Player extends MovableElement {
     won = false;
     projectileCounter = 0;
     projectiles = {};
+    width = null;
+    height = null
 
     constructor() {
         super();
@@ -17,6 +19,8 @@ export default class Player extends MovableElement {
         this.x = global.background.canvas.width/2;
         this.y = global.background.canvas.height/2;
         this.radius = global.background.canvas.height/40;
+        this.width = global.background.canvas.height/20;
+        this.height = global.background.canvas.height/20;
         this.speed = 5;
         this.startTimer();
     }
