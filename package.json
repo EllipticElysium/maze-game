@@ -27,7 +27,8 @@
   "dependencies": {
     "babel": "^6.23.0",
     "babel-cli": "^6.26.0",
-    "babel-loader": "^8.2.2"
+    "babel-loader": "^8.2.2",
+    "jquery": "^3.5.1"
   },
   "babel": {
     "plugins": [
@@ -37,6 +38,11 @@
           "loose": true
         }
       ]
+    ]
+  },
+  "jest": {
+    "setupFiles": [
+      "<rootDir>/tests/test-env.js"
     ]
   }
 }

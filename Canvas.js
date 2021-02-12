@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 export default class Canvas {
     canvas = null;
     ctx = null
