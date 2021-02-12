@@ -11,8 +11,8 @@ export default class GeneratedElement extends MovableElement{
     setRandomPosition() {
         let width = global.background.canvas.width;
         let height = global.background.canvas.height;
-        this.x = Math.floor(Math.random() * (width * 0.6)) + (width * 0.2);
-        this.y = Math.floor(Math.random() * (height * 0.6)) + (width * 0.2);
+        this.x = Math.floor(Math.random() * (width * 0.6)) + (width * 0.1);
+        this.y = Math.floor(Math.random() * (height * 0.6)) + (width * 0.1);
     }
 
     update() {
