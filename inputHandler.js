@@ -1,3 +1,6 @@
+import Room from './CanvasElements/Room';
+
+
 function keyDown(e) {
     if(
         e.key === 'ArrowUp' || e.key === 'Up' ||
@@ -66,7 +69,3 @@ window.onresize = function() {
     global.foreground.update();
     global.player.resetPosition();
 };
-
-if (typeof module !== 'undefined') {
-    module.exports = {keyDown, keyUp, click};
-}

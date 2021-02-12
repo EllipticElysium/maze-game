@@ -1,4 +1,5 @@
 import GeneratedElement from './GeneratedElement';
+import Room from './Room';
 
 
 export default class Enemy extends GeneratedElement {
@@ -14,6 +15,7 @@ export default class Enemy extends GeneratedElement {
     constructor(index) {
         super();
         this.id = index;
+        this.type = 'Enemy';
         this.level = Math.floor(Math.random() * (5)) +1;
         this.radius = this.levels[this.level][0];
         this.speed = this.levels[this.level][1];

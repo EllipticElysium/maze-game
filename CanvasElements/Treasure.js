@@ -1,4 +1,6 @@
 import GeneratedElement from './GeneratedElement';
+import Room from './Room';
+
 
 
 export default class Treasure extends GeneratedElement {

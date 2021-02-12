@@ -1,11 +1,12 @@
 import CanvasElement from './CanvasElement';
-
+import Room from './Room';
 
 export default class MovableElement extends CanvasElement {
     speed = 0;
     dx = 0;
     dy = 0;
     wallHit = false;
+    type = null;
 
     constructor() {
         super();
@@ -14,7 +15,7 @@ export default class MovableElement extends CanvasElement {
     move() {
         this.wallHit = this.getWallHit();
         if(this.wallHit === false) {
-            if(this instanceof Enemy) {
+            if(this.type == 'Enemy') {
                 this.x += this.speed * this.dx;
                 this.y += this.speed * this.dy; 
             } else {
@@ -23,7 +24,7 @@ export default class MovableElement extends CanvasElement {
             }
         } else if(this instanceof Projectile){
             delete global.player.projectiles[this.id];
-        } else if(this instanceof Player) {    
+        } else if(this.type ==  'Player') {    
             let roomChange = this.hitDoor();
             if(roomChange !== false) {
                 global.player.room = Room.rooms[global.player.room].changeRoom(roomChange.direction);
@@ -31,7 +32,7 @@ export default class MovableElement extends CanvasElement {
                 this.x = roomChange.x;
                 this.y = roomChange.y;
             }        
-        } else if(this instanceof Enemy) {
+        } else if(this.type == 'Enemy') {
             if(this.wallHit === 'up' || this.wallHit === 'down') {
                 this.dy *= -1;
             } else if(this.wallHit === 'right' || this.wallHit === 'left') {

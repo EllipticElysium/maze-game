@@ -7,6 +7,7 @@ export default class Projectile extends GeneratedElement {
     constructor(index, x, y) {
         super();
         this.id = index;
+        this.type = 'Projectile';
         this.x = global.player.x;
         this.y = global.player.y;
         this.radius = global.background.canvas.height/100;

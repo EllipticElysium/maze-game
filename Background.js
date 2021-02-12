@@ -1,4 +1,6 @@
 import Canvas from './Canvas';
+import Door from './Door';
+import Room from './CanvasElements/Room';
 
 export default class Background extends Canvas {
     canvasRect = null;

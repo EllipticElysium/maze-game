@@ -1,4 +1,6 @@
 import Canvas from './Canvas';
+import Room from './CanvasElements/Room';
+
 
 export default class Foreground extends Canvas {
 

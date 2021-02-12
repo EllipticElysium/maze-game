@@ -1,4 +1,6 @@
 import MovableElement from './MovableElement';
+import Room from './Room';
+
 
 export default class Player extends MovableElement {
     room = null;
@@ -10,6 +12,7 @@ export default class Player extends MovableElement {
 
     constructor() {
         super();
+        this.type = 'Player';
         this.x = global.background.canvas.width/2;
         this.y = global.background.canvas.height/2;
         this.radius = global.background.canvas.height/40;
