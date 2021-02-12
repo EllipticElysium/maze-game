@@ -3,11 +3,13 @@ import Room from './Room';
 
 export default class Enemy extends GeneratedElement {
     levels = {
-        '1': [7, 1],
-        '2': [10, 2],
-        '3': [15, 3],
+        '1': [50, 1],
+        '2': [35, 2],
+        '3': [27, 3],
         '4': [20, 4],
-        '5': [25, 5]
+        '5': [16, 5],
+        '6': [13, 6],
+        '7': [9, 7]
     }
     level = null;
 
@@ -15,13 +17,13 @@ export default class Enemy extends GeneratedElement {
         super();
         this.id = index;
         this.type = 'Enemy';
-        this.level = Math.floor(Math.random() * (5)) +1;
-        this.radius = this.levels[this.level][0];
+        this.level = Math.floor(Math.random() * (7)) +1;
+        this.radius = global.background.canvas.height/this.levels[this.level][0];
         this.speed = this.levels[this.level][1];
         this.dx = 1;
         this.dy = 1;
-        this.width = global.background.canvas.height/10;
-        this.height = global.background.canvas.height/10;
+        this.width = this.radius * 2;
+        this.height = this.radius * 2;
         this.setRandomDirection();
     }
 
@@ -32,8 +34,10 @@ export default class Enemy extends GeneratedElement {
     
     update() {
         this.detectHit();
-        this.radius = this.levels[this.level][0];
+        this.radius = global.background.canvas.height/this.levels[this.level][0];
         this.speed = this.levels[this.level][1];
+        this.width = this.radius * 2;
+        this.height = this.radius * 2;
         this.move();
     }
 
