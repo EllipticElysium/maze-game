@@ -66,6 +66,7 @@ export default class Enemy extends GeneratedElement {
             this.level -= 1;
         } else {
             delete Room.rooms[global.player.room].enemies[this.id];
+            global.player.updateScore(200);
         }
     }
 }

@@ -2,7 +2,7 @@ import GeneratedElement from './GeneratedElement';
 
 export default class Projectile extends GeneratedElement {
     angle = 0;
-    speed = 8;
+    speed = 10;
 
     constructor(index, x, y) {
         super();
