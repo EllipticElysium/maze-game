@@ -1,5 +1,6 @@
 import Room from './CanvasElements/Room';
-
+import Background from './Background';
+import Foreground from './Foreground';
 
 function keyDown(e) {
     if(
@@ -63,7 +64,7 @@ document.addEventListener('keyup', keyUp);
 document.addEventListener('mousedown', click);
 
 window.onresize = function() {
-    background = new Background();
+    global.background = new Background();
     global.background.draw();
     global.foreground = new Foreground();
     global.foreground.update();

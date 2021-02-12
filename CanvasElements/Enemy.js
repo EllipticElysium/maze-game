@@ -1,7 +1,6 @@
 import GeneratedElement from './GeneratedElement';
 import Room from './Room';
 
-
 export default class Enemy extends GeneratedElement {
     levels = {
         '1': [7, 1],
@@ -42,7 +41,6 @@ export default class Enemy extends GeneratedElement {
             let Projectile = global.player.projectiles[index];
             if(self.hit(Projectile) && Projectile.used === false) {
                 Projectile.used = true;
-                console.log('projectile hit enemy!');
                 self.projectileHit(Projectile);
             }
         })

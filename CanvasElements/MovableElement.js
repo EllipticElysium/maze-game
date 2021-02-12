@@ -1,7 +1,6 @@
 import CanvasElement from './CanvasElement';
 import Room from './Room';
 
-
 export default class MovableElement extends CanvasElement {
     speed = 0;
     dx = 0;

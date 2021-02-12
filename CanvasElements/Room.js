@@ -1,6 +1,7 @@
 import CanvasElement from './CanvasElement';
 import Treasure from './Treasure';
 import Enemy from './Enemy';
+import Marker from './Marker';
 
 export default class Room extends CanvasElement {
     static rooms = [];
