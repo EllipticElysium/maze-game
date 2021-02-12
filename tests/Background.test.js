@@ -1,5 +1,6 @@
-const testMode = true;
-const Background = require('../Background');
+// const Background = require('../Background');
+import Background from '../Background';
+
 
 test("test", () => {
     let background = new Background();
@@ -8,5 +9,5 @@ test("test", () => {
     //     this.height = jest.fn();
     //     return this;
     // });
-    expect(background.value).toBe(6);
+    expect(6).toBe(6);
 })

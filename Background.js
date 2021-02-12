@@ -1,15 +1,17 @@
-class Background extends Canvas {
+import Canvas from './Canvas';
+
+export default class Background extends Canvas {
     canvasRect = null;
 
     constructor() {
         super();
-        this.canvas = document.getElementById('canvas-background');
-        this.ctx = this.canvas.getContext('2d');
-        this.canvas.width = this.dimensions;
-        this.canvas.height = this.dimensions;
-        this.doorMin = this.dimensions * (5/12);
-        this.doorMax = this.dimensions * (7/12);
-        this.canvasRect = this.canvas.getBoundingClientRect();
+        // this.canvas = document.getElementById('canvas-background');
+        // this.ctx = this.canvas.getContext('2d');
+        // this.canvas.width = this.dimensions;
+        // this.canvas.height = this.dimensions;
+        // this.doorMin = this.dimensions * (5/12);
+        // this.doorMax = this.dimensions * (7/12);
+        // this.canvasRect = this.canvas.getBoundingClientRect();
     }
 
     draw() {
@@ -77,8 +79,4 @@ class Background extends Canvas {
             self.ctx.fill();
         })
     }
-}
-
-if (typeof module !== 'undefined') {
-    module.exports = Background;
 }

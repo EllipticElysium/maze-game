@@ -1,4 +1,4 @@
-class Canvas {
+export default class Canvas {
     canvas = null;
     ctx = null
     dimensions = null;
@@ -7,8 +7,8 @@ class Canvas {
 
     constructor() {
         this.dimensions = window.innerHeight * 0.80;
-        $('.background-image').width(this.dimensions/2);
-        $('.background-image').height(this.dimensions/2);
+        // $('.background-image').width(this.dimensions/2);
+        // $('.background-image').height(this.dimensions/2);
     }
 
     clear() {
@@ -16,7 +16,3 @@ class Canvas {
     }
 }
 
-/* istanbul ignore next */ 
-if (typeof module !== 'undefined') {
-    module.exports = Canvas;
-}

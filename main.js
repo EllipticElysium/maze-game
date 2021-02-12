@@ -1,3 +1,10 @@
+import Background from './Background';
+import Foreground from './Foreground';
+import Player from './CanvasElements/Player';
+
+
+
+
 let settings = {};
 
 const configURL = './configuration.txt'

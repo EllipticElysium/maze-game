@@ -1,6 +1,6 @@
-const Door = require('../Door');
+import Door from '../Door';
 
-test('A door is initially disabled', () => {
+it('A door is initially disabled', () => {
     let newDoor = new Door();
     expect(newDoor.status).toBe('disabled');
 })

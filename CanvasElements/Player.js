@@ -1,4 +1,4 @@
-class Player extends MovableElement {
+export default class Player extends MovableElement {
     room = null;
     score = 0;
     time = 0;
@@ -95,8 +95,4 @@ class Player extends MovableElement {
         this.x = background.canvas.width/2;
         this.y = background.canvas.height/2;
     }
-}
-
-if (typeof module !== 'undefined') {
-    module.exports = Player;
 }

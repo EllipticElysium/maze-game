@@ -1,4 +1,4 @@
-class Door{
+export default class Door{
     colours = {};
     status = null;
     direction = null;
@@ -64,9 +64,4 @@ class Door{
         background.ctx.stroke();
     }
 
-}
-
-/* istanbul ignore next */ 
-if (typeof module !== 'undefined') {
-    module.exports = Door;
 }

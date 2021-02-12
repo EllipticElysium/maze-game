@@ -1,4 +1,6 @@
-class Foreground extends Canvas {
+import Canvas from './Canvas';
+
+export default class Foreground extends Canvas {
 
     constructor() {
         super();
@@ -52,8 +54,4 @@ class Foreground extends Canvas {
             self.ctx.fill();
         })
     }
-}
-
-if (typeof module !== 'undefined') {
-    module.exports = Foreground;
 }
