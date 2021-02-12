@@ -2,7 +2,7 @@ import GeneratedElement from './GeneratedElement';
 
 export default class Projectile extends GeneratedElement {
     angle = 0;
-    speed = 5;
+    speed = 8;
 
     constructor(index, x, y) {
         super();
@@ -10,7 +10,7 @@ export default class Projectile extends GeneratedElement {
         this.type = 'Projectile';
         this.x = global.player.x;
         this.y = global.player.y;
-        this.radius = global.background.canvas.height/100;
+        this.radius = global.background.canvas.height/80;
         this.width = this.radius * 2;
         this.height = this.radius * 2;
         

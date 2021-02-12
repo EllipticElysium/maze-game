@@ -53,7 +53,7 @@ export default class Enemy extends GeneratedElement {
         if(this.hit(global.player)) {
             if(this.overlay === false) {
                 this.overlay = true;
-                global.player.updateScore(-200);
+                global.player.updateScore(-500);
             }
         } else {
             this.overlay = false;

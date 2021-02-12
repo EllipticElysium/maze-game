@@ -47,14 +47,34 @@ export default class Room extends CanvasElement {
         if(Math.random() <= 0.8) {
             let index = Object.keys(this.treasure).length;
             this.treasure[index] = new Treasure(index);
-        }    
+        }
+        if(Math.random() <= 0.4) {
+            let index = Object.keys(this.treasure).length;
+            this.treasure[index] = new Treasure(index);
+        }
+        if(Math.random() <= 0.2) {
+            let index = Object.keys(this.treasure).length;
+            this.treasure[index] = new Treasure(index);
+        }
     }
 
     generateEnemies() {
-        if(Math.random() <= 1) {
-            let index = Object.keys(this.treasure).length;
+        if(Math.random() <= 0.6) {
+            let index = Object.keys(this.enemies).length;
             this.enemies[index] = new Enemy(index);
-        }    
+        }
+        if(Math.random() <= 0.4) {
+            let index = Object.keys(this.enemies).length;
+            this.enemies[index] = new Enemy(index);
+        }
+        if(Math.random() <= 0.3) {
+            let index = Object.keys(this.enemies).length;
+            this.enemies[index] = new Enemy(index);
+        }
+        if(Math.random() <= 0.1) {
+            let index = Object.keys(this.enemies).length;
+            this.enemies[index] = new Enemy(index);
+        } 
     }
 
     changeRoom(direction) {

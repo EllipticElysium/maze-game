@@ -19,7 +19,7 @@ export default class Player extends MovableElement {
         this.radius = global.background.canvas.height/40;
         this.width = global.background.canvas.height/20;
         this.height = global.background.canvas.height/20;
-        this.speed = 5;
+        this.speed = 7;
         this.startTimer();
     }
 
@@ -96,6 +96,9 @@ export default class Player extends MovableElement {
 
     updateScore(value) {
         this.score += value;
+        if(this.score < 0) {
+            this.score = 0;
+        } 
         $('#score').text("Score:  " + this.score);
     }
 
