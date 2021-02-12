@@ -5,10 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="/favicon.png" sizes="32x32">
 </head>
 <body>
-    <h1>test</h1>
-    <script src="./room.js"></script>
-    <script src="./main.js"></script>
+    <div class="container">
+        <div class="score-container">
+            <h1 id="score">Score: 0</h1>
+            <h1 id="time">Time: 0</h1>
+        </div>
+        <div class="canvas-container">
+            <div class="background-image-container">
+                <img src="https://i.pinimg.com/originals/af/f3/9b/aff39b42ed16c769660d52368bff149f.jpg" class="background-image">
+                <img src="https://i.pinimg.com/originals/af/f3/9b/aff39b42ed16c769660d52368bff149f.jpg" class="background-image">
+                <img src="https://i.pinimg.com/originals/af/f3/9b/aff39b42ed16c769660d52368bff149f.jpg" class="background-image">
+                <img src="https://i.pinimg.com/originals/af/f3/9b/aff39b42ed16c769660d52368bff149f.jpg" class="background-image">
+            </div>
+            <canvas id="canvas-background" class="canvas"></canvas>
+            <canvas id="canvas-foreground" class="canvas"></canvas>
+        </div>
+        <div class="result-container">
+            <h1 id="result"></h1>
+        </div>
+    </div>
+    <img src="./player.png" alt="" id="player" class="avatar-source" />
+    <img src="./treasure.png" alt="" id="treasure" class="avatar-source" />
+    <img src="./enemy.png" alt="" id="enemy" class="avatar-source" />
+    <img src="./marker.png" alt="" id="marker" class="avatar-source" />
+    <img src="./projectile.png" alt="" id="projectile" class="avatar-source" />
+    <script src="./dist/bundle.js"></script>
 </body>
 </html>

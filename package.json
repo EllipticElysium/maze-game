@@ -1,0 +1,49 @@
+{
+  "name": "maze-game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ElipticNight/maze-game.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ElipticNight/maze-game/issues"
+  },
+  "homepage": "https://github.com/ElipticNight/maze-game#readme",
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.12.13",
+    "@babel/preset-env": "^7.12.16",
+    "jest": "^26.6.3",
+    "webpack": "^5.21.2",
+    "webpack-cli": "^4.5.0"
+  },
+  "dependencies": {
+    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^8.2.2",
+    "jest-canvas-mock": "^2.3.1",
+    "jquery": "^3.5.1"
+  },
+  "babel": {
+    "plugins": [
+      [
+        "@babel/plugin-proposal-class-properties",
+        {
+          "loose": true
+        }
+      ]
+    ]
+  },
+  "jest": {
+    "setupFiles": [
+      "<rootDir>/tests/test-env.js"
+    ]
+  }
+}
