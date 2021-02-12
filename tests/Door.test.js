@@ -1,6 +1,6 @@
 import Door from '../Door';
 
-it('A door is initially disabled', () => {
+test('A door is initially disabled', () => {
     let newDoor = new Door();
     expect(newDoor.status).toBe('disabled');
 })
