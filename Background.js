@@ -72,12 +72,14 @@ export default class Background extends Canvas {
     }
 
     drawMarkers() {
+        const markerImage = document.getElementById('marker');
         let self = this;
         Object.keys(Room.rooms[global.player.room].markers).forEach(function(index) {
             let marker = Room.rooms[global.player.room].markers[index];
             self.ctx.beginPath();
+            self.ctx.drawImage(markerImage, marker.x - marker.radius, marker.y - marker.radius, marker.width, marker.height);
             self.ctx.arc(marker.x, marker.y, marker.radius, 0, Math.PI * 2);
-            self.ctx.fillStyle = 'blue';
+            self.ctx.fillStyle = 'transparent';
             self.ctx.fill();
         })
     }
