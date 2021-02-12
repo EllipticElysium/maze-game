@@ -18,6 +18,19 @@ beforeEach(() => {
             left: 911.5
         };
     }
+    global.player = {};
+    global.player.room = 1;
+    let Room = {};
+    Room.rooms[1] = {
+        "up": null,
+        "right": null,
+        "down": null,
+        "left": null,        
+    }
+    Door = () => {
+        this.draw = function() {};
+        return this;
+    }
 });
   
 afterEach(() => {
@@ -63,4 +76,25 @@ test("A new Background's canvasRect is it's position within the window", () => {
         bottom: 159,
         left: 911.5
     });
+})
+
+test("drawing a background draw Walls on the room", () => {
+    let background = new Background();
+    background.draw();
+    background.drawWalls = jest.fn();
+    expect(background.drawWalls.mock.calls.length).toBe(1);
+})
+
+test("drawing a background draw Doors on the room", () => {
+    let background = new Background();
+    background.draw();
+    background.drawDoors = jest.fn(id);
+    expect(background.drawWalls.mock.calls.length).toBe(1);
+})
+
+test("drawing a background draw user placed Markers on the room", () => {
+    let background = new Background();
+    background.draw();
+    background.drawMarkers = jest.fn();
+    expect(background.drawMarkers.mock.calls.length).toBe(1);
 })
