@@ -10,7 +10,7 @@ export default class Marker extends CanvasElement {
         this.x = global.player.x;
         this.y = global.player.y;
         this.radius = global.background.canvas.height/10;
-        this.width = global.background.canvas.height/5;
-        this.height = global.background.canvas.height/5;
+        this.width = this.radius * 2;
+        this.height = this.radius * 2;
     }
 }

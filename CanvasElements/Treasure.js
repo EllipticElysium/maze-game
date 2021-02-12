@@ -9,8 +9,8 @@ export default class Treasure extends GeneratedElement {
         this.id = index;
         this.value = Math.floor(Math.random() * (9)) * 100 + 100;
         this.radius = global.background.canvas.height/20;
-        this.width = global.background.canvas.height/10;
-        this.height = global.background.canvas.height/10;
+        this.width = this.radius * 2;
+        this.height = this.radius * 2;
     }
 
     detectHit() {

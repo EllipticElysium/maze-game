@@ -25,6 +25,7 @@ export default class Foreground extends Canvas {
         const playerImage = document.getElementById('player');
         const treasureImage = document.getElementById('treasure');
         const enemyImage = document.getElementById('enemy');
+        const projectileImage = document.getElementById('projectile');
 
         this.ctx.drawImage(playerImage, global.player.x - global.player.radius, global.player.y - global.player.radius, global.player.width, global.player.height);
 
@@ -57,6 +58,7 @@ export default class Foreground extends Canvas {
         Object.keys(global.player.projectiles).forEach(function(index) {
             let Projectile = global.player.projectiles[index];
             Projectile.move();
+            self.ctx.drawImage(projectileImage, Projectile.x - Projectile.radius, Projectile.y - Projectile.radius, Projectile.width, Projectile.height);
             self.ctx.beginPath();
             self.ctx.arc(Projectile.x, Projectile.y, Projectile.radius, 0, Math.PI * 2);
             self.ctx.fillStyle = 'blue';

@@ -11,6 +11,8 @@ export default class Projectile extends GeneratedElement {
         this.x = global.player.x;
         this.y = global.player.y;
         this.radius = global.background.canvas.height/100;
+        this.width = this.radius * 2;
+        this.height = this.radius * 2;
         
         this.setDirection(x, y);
     }
