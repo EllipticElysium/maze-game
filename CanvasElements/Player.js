@@ -1,6 +1,7 @@
 import MovableElement from './MovableElement';
 import Room from './Room';
 import Projectile from './Projectile';
+import $ from 'jquery';
 
 export default class Player extends MovableElement {
     room = null;
